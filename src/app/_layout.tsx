@@ -2,26 +2,26 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 import { Slot } from 'expo-router'
 
 import {
-    useFonts,
-    Inter_400Regular as InterRegular,
-    Inter_600SemiBold as InterSemiBold,
-    Inter_700Bold as InterBold,
+  useFonts,
+  Inter_400Regular as InterRegular,
+  Inter_600SemiBold as InterSemiBold,
+  Inter_700Bold as InterBold,
 } from '@expo-google-fonts/inter'
 
 export default function Layout() {
-    const [fontsLoaded] = useFonts({
-        InterRegular,
-        InterSemiBold,
-        InterBold,
-    })
+  const [fontsLoaded] = useFonts({
+    InterRegular,
+    InterSemiBold,
+    InterBold,
+  })
 
-    if (!fontsLoaded) return
+  if (!fontsLoaded) return
 
-    return (
-        <SafeAreaProvider>
-            <SafeAreaView style={{flex: 1}}>
-                <Slot />
-            </SafeAreaView>
-        </SafeAreaProvider>
-    )
+  return (
+    <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1 }}>
+        <Slot />
+      </SafeAreaView>
+    </SafeAreaProvider>
+  )
 }
