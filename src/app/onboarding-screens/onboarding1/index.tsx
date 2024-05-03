@@ -5,7 +5,7 @@ import { styles } from '../styles'
 import Onboarding1 from '../../../assets/images/onboarding1.svg'
 
 const windowHeight = Dimensions.get('window').height
-const adaptativePaddingTopScreen = Number((windowHeight * 0.2).toFixed(0))
+const adaptativePaddingTopScreen = Number((windowHeight * 0.2 - 50).toFixed(0))
 
 export default function OnboardingScreen1() {
   return (
@@ -15,7 +15,7 @@ export default function OnboardingScreen1() {
         styles.onboardingContainer,
       ]}
     >
-      <View>
+      <View style={{ marginBottom: 20 }}>
         <View style={{ alignItems: 'center' }}>
           <Onboarding1 />
         </View>
@@ -35,12 +35,11 @@ export default function OnboardingScreen1() {
           </View>
         </TouchableOpacity>
         <View style={styles.linkContainer}>
-          <Link
-            href="/onboarding-screens/onboarding2/"
-            style={styles.buttonArea}
-          >
-            <Text style={styles.onboardingLink}>Pular</Text>
-          </Link>
+          <View style={styles.buttonArea}>
+            <Link href="/onboarding-screens/onboarding2/">
+              <Text style={styles.onboardingLink}>Pular</Text>
+            </Link>
+          </View>
         </View>
       </View>
     </View>

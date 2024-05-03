@@ -24,7 +24,7 @@ export default function OnboardingScreen3() {
           styles.onboardingContainer,
         ]}
       >
-        <View>
+        <View style={{ marginBottom: 20 }}>
           <View style={{ alignItems: 'center' }}>
             <Onboarding3 />
           </View>
@@ -45,9 +45,11 @@ export default function OnboardingScreen3() {
             </View>
           </TouchableOpacity>
           <View style={styles.linkContainer}>
-            <Link href="/login" style={styles.buttonArea}>
-              <Text style={styles.onboardingLink}>Usar a calculadora</Text>
-            </Link>
+            <View style={styles.buttonArea}>
+              <Link href="/login">
+                <Text style={styles.onboardingLink}>Usar a calculadora</Text>
+              </Link>
+            </View>
           </View>
         </View>
       </View>

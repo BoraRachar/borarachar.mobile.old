@@ -40,7 +40,6 @@ export const styles = StyleSheet.create({
     paddingTop: 10,
   },
   onboardingLink: {
-    textAlign: 'center',
     fontSize: 16,
   },
 })
