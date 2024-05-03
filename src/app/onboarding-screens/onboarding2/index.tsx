@@ -1,8 +1,9 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Image, Dimensions } from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions } from 'react-native'
 import { Link } from 'expo-router'
 import { styles } from '../styles'
 import Onboarding2 from '../../../assets/images/onboarding2.svg'
+import BackFrame from '../../../assets/images/backFrame.svg'
 
 const windowHeight = Dimensions.get('window').height
 const adaptativePaddingTopScreen = Number((windowHeight * 0.2 - 50).toFixed(0))
@@ -12,10 +13,7 @@ export default function OnboardingScreen2() {
     <View style={{ position: 'relative' }}>
       <View style={{ padding: 6, position: 'absolute', zIndex: 1 }}>
         <Link href="../">
-          <Image
-            source={require('../../../assets/images/frame-21.png')}
-            alt="Seta de voltar"
-          />
+          <BackFrame />
         </Link>
       </View>
       <View
