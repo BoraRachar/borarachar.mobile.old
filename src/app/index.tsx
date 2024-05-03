@@ -3,7 +3,7 @@ import { Link } from 'expo-router'
 import { useAsyncStorage } from '@react-native-async-storage/async-storage'
 import { View, Text, Image, Dimensions } from 'react-native'
 import { styles } from './styles'
-import Onboarding1 from './onboarding-screens/onboarding1'
+import OnboardingScreen1 from './onboarding-screens/onboarding1'
 
 export default function Index() {
   const windowHeight = Dimensions.get('window').height
@@ -27,7 +27,7 @@ export default function Index() {
   return (
     <View>
       {showOnboarding ? (
-        <Onboarding1 />
+        <OnboardingScreen1 />
       ) : (
         <View
           style={[{ paddingTop: adaptativePaddingTopScreen }, styles.container]}

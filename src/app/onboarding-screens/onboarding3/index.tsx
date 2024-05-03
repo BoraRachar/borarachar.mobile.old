@@ -2,11 +2,12 @@ import React from 'react'
 import { View, Text, TouchableOpacity, Image, Dimensions } from 'react-native'
 import { Link } from 'expo-router'
 import { styles } from '../styles'
+import Onboarding3 from '../../../assets/images/onboarding3.svg'
 
 const windowHeight = Dimensions.get('window').height
 const adaptativePaddingTopScreen = Number((windowHeight * 0.2).toFixed(0))
 
-export default function Onboarding3() {
+export default function OnboardingScreen3() {
   return (
     <View style={{ position: 'relative' }}>
       <View style={{ padding: 6, position: 'absolute', zIndex: 1 }}>
@@ -25,10 +26,7 @@ export default function Onboarding3() {
       >
         <View>
           <View style={{ alignItems: 'center' }}>
-            <Image
-              source={require('../../../assets/images/onboarding2.png')}
-              alt="Imagem de celular e vários usuários"
-            />
+            <Onboarding3 />
           </View>
           <Text style={styles.Title}>
             Crie grupos, adicione amigos e escolha o jeito que prefere dividir.

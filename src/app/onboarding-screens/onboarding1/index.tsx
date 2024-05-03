@@ -1,12 +1,13 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Image, Dimensions } from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions } from 'react-native'
 import { Link } from 'expo-router'
 import { styles } from '../styles'
+import Onboarding1 from '../../../assets/images/onboarding1.svg'
 
 const windowHeight = Dimensions.get('window').height
 const adaptativePaddingTopScreen = Number((windowHeight * 0.2).toFixed(0))
 
-export default function Onboarding1() {
+export default function OnboardingScreen1() {
   return (
     <View
       style={[
@@ -16,10 +17,7 @@ export default function Onboarding1() {
     >
       <View>
         <View style={{ alignItems: 'center' }}>
-          <Image
-            source={require('../../../assets/images/onboarding1.png')}
-            alt="Imagem de celular e vários usuários"
-          />
+          <Onboarding1 />
         </View>
         <Text style={styles.Title}>Rápido, fácil e seguro.</Text>
         <View style={styles.containerText}>
