@@ -1,17 +1,11 @@
-import {
-  Pressable,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native'
+import { Pressable, Text, TouchableOpacity, View } from 'react-native'
 import { OtpInput } from 'react-native-otp-entry'
 import { Ionicons } from '@expo/vector-icons'
 import { theme } from '@/src/theme'
 
 import { styles } from './styles'
 
-export default function CodeInputPage() {
+export default function CodeInputPage({ setStep }) {
   return (
     <>
       {/* main */}
@@ -32,12 +26,14 @@ export default function CodeInputPage() {
             }}
           />
         </View>
-        <TextInput />
       </View>
 
       {/* footer */}
       <View style={{ flexShrink: 1, paddingBottom: 24, gap: 8 }}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => setStep((current: number) => current + 1)}
+        >
           <Text style={styles.buttonText}>Nova Senha</Text>
           <Ionicons
             name="arrow-forward-outline"
