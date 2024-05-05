@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Dimensions } from 'react-native'
+import { View, Text, TouchableOpacity, Pressable, Dimensions } from 'react-native'
 import { Link } from 'expo-router'
 import { styles } from '../styles'
 import Onboarding1 from '../../../assets/images/onboarding1.svg'
@@ -31,12 +31,14 @@ export default function OnboardingScreen1() {
       <View>
         <TouchableOpacity style={styles.Button}>
           <View style={styles.buttonArea}>
-            <Text style={styles.buttonText}>Como funciona?</Text>
+            <Link push href="/onboarding-screens/onboarding2/">
+              <Text style={styles.buttonText}>Como funciona?</Text>
+            </Link>
           </View>
         </TouchableOpacity>
         <View style={styles.linkContainer}>
           <View style={styles.buttonArea}>
-            <Link href="/onboarding-screens/onboarding2/">
+            <Link push href="/">
               <Text style={styles.onboardingLink}>Pular</Text>
             </Link>
           </View>

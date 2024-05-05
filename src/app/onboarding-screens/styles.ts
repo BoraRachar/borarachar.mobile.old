@@ -38,8 +38,10 @@ export const styles = StyleSheet.create({
   },
   linkContainer: {
     paddingTop: 10,
+    marginBottom: 20,
   },
   onboardingLink: {
     fontSize: 16,
+    textDecorationLine: 'underline'
   },
 })

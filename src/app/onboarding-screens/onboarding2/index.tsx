@@ -12,7 +12,7 @@ export default function OnboardingScreen2() {
   return (
     <View style={{ position: 'relative' }}>
       <View style={{ padding: 6, position: 'absolute', zIndex: 1 }}>
-        <Link href="../">
+        <Link href="/onboarding-screens/onboarding1/">
           <BackFrame />
         </Link>
       </View>
@@ -37,14 +37,16 @@ export default function OnboardingScreen2() {
         <View>
           <TouchableOpacity style={styles.Button}>
             <View style={styles.buttonArea}>
-              <Text style={styles.buttonText}>
-                E para gastos mais complexos?
-              </Text>
+              <Link href="/onboarding-screens/onboarding3/">
+                <Text style={styles.buttonText}>
+                  E para gastos mais complexos?
+                </Text>
+              </Link>
             </View>
           </TouchableOpacity>
           <View style={styles.linkContainer}>
             <View style={styles.buttonArea}>
-              <Link href="/onboarding-screens/onboarding3/">
+              <Link push href="/">
                 <Text style={styles.onboardingLink}>Pular</Text>
               </Link>
             </View>

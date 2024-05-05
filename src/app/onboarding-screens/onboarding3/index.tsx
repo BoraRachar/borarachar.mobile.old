@@ -39,12 +39,14 @@ export default function OnboardingScreen3() {
         <View>
           <TouchableOpacity style={styles.Button}>
             <View style={styles.buttonArea}>
-              <Text style={styles.buttonText}>Criar conta</Text>
+              <Link push href="/">
+                <Text style={styles.buttonText}>Criar conta</Text>
+              </Link>
             </View>
           </TouchableOpacity>
           <View style={styles.linkContainer}>
             <View style={styles.buttonArea}>
-              <Link href="/login">
+              <Link push href="/">
                 <Text style={styles.onboardingLink}>Usar a calculadora</Text>
               </Link>
             </View>
