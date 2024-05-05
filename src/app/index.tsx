@@ -47,7 +47,7 @@ export default function Index() {
             >
               <Logo />
               <View style={styles.containerButtons}>
-                <Link href="/" style={styles.createAccountButton}>
+                <Link href="/create-user/" style={styles.createAccountButton}>
                   Criar minha conta
                 </Link>
                 <View style={styles.horizontalLineWithTextContainer}>
