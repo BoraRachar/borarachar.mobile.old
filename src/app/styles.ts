@@ -16,6 +16,8 @@ export const styles = StyleSheet.create({
     width: '100%',
     padding: 12,
     borderRadius: 8,
+  },
+  createAccountButtonText: {
     textAlign: 'center',
     color: theme.colors.white,
     fontSize: 16,

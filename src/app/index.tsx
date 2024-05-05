@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 import { useAsyncStorage } from '@react-native-async-storage/async-storage'
-import { View, Text, Dimensions } from 'react-native'
+import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
 import { styles } from './styles'
 import OnboardingScreen1 from './onboarding-screens/onboarding1'
 import Logo from '../assets/images/logo.svg'
@@ -47,9 +47,14 @@ export default function Index() {
             >
               <Logo />
               <View style={styles.containerButtons}>
-                <Link href="/create-user/" style={styles.createAccountButton}>
-                  Criar minha conta
-                </Link>
+                <TouchableOpacity
+                  style={styles.createAccountButton}
+                  onPress={() => router.push('/create-user/')}
+                >
+                  <Text style={styles.createAccountButtonText}>
+                    Criar minha conta
+                  </Text>
+                </TouchableOpacity>
                 <View style={styles.horizontalLineWithTextContainer}>
                   <View style={styles.horizontalLine} />
                   <Text style={styles.horizontalText}>OU</Text>
