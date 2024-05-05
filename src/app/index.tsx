@@ -66,9 +66,12 @@ export default function Index() {
                 >
                   <Text style={styles.loginButtonText}>Fazer login</Text>
                 </TouchableOpacity>
-                <Link href="/" style={styles.calculatorButton}>
-                  Calculadora
-                </Link>
+                <TouchableOpacity
+                  style={styles.calculatorButton}
+                  onPress={() => router.push('/')}
+                >
+                  <Text style={styles.calculatorButtonText}>Calculadora</Text>
+                </TouchableOpacity>
               </View>
             </View>
           )}

@@ -59,6 +59,8 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     borderColor: theme.colors.primary,
     borderWidth: 1,
+  },
+  calculatorButtonText: {
     textAlign: 'center',
     color: theme.colors.primary,
     fontSize: 16,
