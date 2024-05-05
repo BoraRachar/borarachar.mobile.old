@@ -46,6 +46,8 @@ export const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 8,
     marginBottom: 16,
+  },
+  loginButtonText: {
     textAlign: 'center',
     color: theme.colors.primary,
     fontSize: 16,
