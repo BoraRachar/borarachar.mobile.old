@@ -10,8 +10,10 @@ import { theme } from '@/src/theme'
 
 import { styles } from './styles'
 import { useState } from 'react'
+import { useRouter } from 'expo-router'
 
 export default function NewPasswordPage() {
+  const router = useRouter()
   const [hidden, setHidden] = useState(true)
   const [hidden2, setHidden2] = useState(true)
 
@@ -82,7 +84,10 @@ export default function NewPasswordPage() {
 
       {/* footer */}
       <View style={{ paddingBottom: 24 }}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => router.push('/reset-password/sucess')}
+        >
           <Text style={styles.buttonText}>Criar nova senha</Text>
           <Ionicons
             name="arrow-forward-outline"
