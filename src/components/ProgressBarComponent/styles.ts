@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
     height: 2,
     backgroundColor: theme.colors.tertiary,
     borderRadius: 8,
+    marginTop: 30,
   },
   progressBarTranck: {
     height: 2,

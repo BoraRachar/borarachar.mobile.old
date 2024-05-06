@@ -1,0 +1,94 @@
+import { StyleSheet } from 'react-native'
+import { theme } from '@/src/theme'
+
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    paddingHorizontal: 24,
+    width: '100%',
+  },
+  headerText: {
+    color: theme.colors.primary,
+    fontSize: 16,
+    fontWeight: '600',
+    marginTop: 10,
+  },
+  iconContainer: {
+    width: '38%',
+  },
+  textContainer: {
+    width: '62%',
+  },
+  progressBar: {
+    marginTop: 20,
+  },
+  formContainer: {
+    width: '90%',
+    height: '80%',
+    marginLeft: '5%',
+    marginTop: 30,
+  },
+  contentForm: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  titleInput: {
+    color: theme.colors.primary,
+    fontSize: 32,
+    lineHeight: 36,
+    fontWeight: '700',
+  },
+  input: {
+    width: '100%',
+    height: 48,
+    borderColor: theme.colors.primary,
+    borderWidth: 1,
+    borderRadius: 8,
+    marginTop: 20,
+    padding: 10,
+    color: theme.colors.secondary,
+  },
+  cancelButton: {
+    minWidth: '48%',
+    height: 48,
+    borderRadius: 6,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: theme.colors.tertiary,
+  },
+  cancelButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: theme.colors.primary,
+    lineHeight: 22,
+  },
+  emailButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minWidth: '48%',
+    height: 48,
+    borderRadius: 6,
+    backgroundColor: theme.colors.primary,
+  },
+  emailButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: theme.colors.white,
+    lineHeight: 22,
+    textAlignVertical: 'center',
+  },
+  arrowIcon: {
+    marginLeft: 8,
+    marginTop: 3,
+  },
+})
