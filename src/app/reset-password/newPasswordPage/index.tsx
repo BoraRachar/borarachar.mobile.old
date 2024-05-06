@@ -20,12 +20,14 @@ export default function NewPasswordPage() {
   return (
     <>
       {/* main */}
-      <View style={{ flex: 1 }}>
+      <View>
         <Text style={styles.subTitle}>É fácil redefinir sua senha.</Text>
         <Text style={styles.description}>
           Atualize sua senha para manter sua conta segura!
         </Text>
+      </View>
 
+      <View style={{ flex: 1, justifyContent: 'space-between' }}>
         <View style={{ marginTop: 24, gap: 16 }}>
           <View>
             <Text style={styles.label}>Nova senha</Text>
@@ -80,21 +82,21 @@ export default function NewPasswordPage() {
             </Text>
           </View>
         </View>
-      </View>
 
-      {/* footer */}
-      <View style={{ paddingBottom: 24 }}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => router.push('/reset-password/sucess')}
-        >
-          <Text style={styles.buttonText}>Criar nova senha</Text>
-          <Ionicons
-            name="arrow-forward-outline"
-            size={16}
-            color={theme.colors.white}
-          />
-        </TouchableOpacity>
+        {/* footer */}
+        <View style={{ paddingBottom: 24 }}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => router.push('/reset-password/sucess')}
+          >
+            <Text style={styles.buttonText}>Criar nova senha</Text>
+            <Ionicons
+              name="arrow-forward-outline"
+              size={16}
+              color={theme.colors.white}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     </>
   )
