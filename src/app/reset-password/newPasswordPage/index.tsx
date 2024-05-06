@@ -5,17 +5,51 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 import { Ionicons } from '@expo/vector-icons'
 import { theme } from '@/src/theme'
 
 import { styles } from './styles'
 import { useState } from 'react'
-import { useRouter } from 'expo-router'
+
+type FormData = {
+  newPassword: 'string'
+  newPasswordConfirm: 'string'
+}
+
+const schema = yup.object().shape({
+  newPassword: yup
+    .string()
+    .required('O campo de senha não pode ser vázio')
+    .matches(/[A-Z]/, 'Deve conter pelo menos uma letra maiúscula')
+    .matches(/[a-z]/, 'Deve conter pelo menos uma letra minúscula')
+    .matches(
+      /[!@#$%&-]/,
+      'Deve conter pelo menos um dos caracteres: !, @, #, $, %, &, -',
+    )
+    .min(6, 'A senha deve conter pelo menos 6 dígitos'),
+  newPasswordConfirm: yup
+    .string()
+    .oneOf([yup.ref('newPassword')], 'A senhas não conferem'),
+})
 
 export default function NewPasswordPage() {
-  const router = useRouter()
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: yupResolver(schema),
+  })
   const [hidden, setHidden] = useState(true)
   const [hidden2, setHidden2] = useState(true)
+
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    console.log(data)
+  }
 
   return (
     <>
@@ -37,6 +71,8 @@ export default function NewPasswordPage() {
                 autoFocus={true}
                 secureTextEntry={hidden}
                 maxLength={20}
+                {...register('newPassword')}
+                onChangeText={(text) => setValue('newPassword', text)}
               />
               <Pressable onPress={() => setHidden(!hidden)}>
                 <Ionicons
@@ -46,6 +82,11 @@ export default function NewPasswordPage() {
                 />
               </Pressable>
             </View>
+            {errors && (
+              <Text style={styles.errorMessage}>
+                {errors.newPassword?.message}
+              </Text>
+            )}
           </View>
 
           <View>
@@ -56,6 +97,8 @@ export default function NewPasswordPage() {
                 autoFocus={true}
                 secureTextEntry={hidden2}
                 maxLength={20}
+                {...register('newPasswordConfirm')}
+                onChangeText={(text) => setValue('newPasswordConfirm', text)}
               />
               <Pressable onPress={() => setHidden2(!hidden2)}>
                 <Ionicons
@@ -65,6 +108,11 @@ export default function NewPasswordPage() {
                 />
               </Pressable>
             </View>
+            {errors && (
+              <Text style={styles.errorMessage}>
+                {errors.newPasswordConfirm?.message}
+              </Text>
+            )}
           </View>
 
           <View>
@@ -87,7 +135,7 @@ export default function NewPasswordPage() {
         <View style={{ paddingBottom: 24 }}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => router.push('/reset-password/sucess')}
+            onPress={handleSubmit(onSubmit)}
           >
             <Text style={styles.buttonText}>Criar nova senha</Text>
             <Ionicons

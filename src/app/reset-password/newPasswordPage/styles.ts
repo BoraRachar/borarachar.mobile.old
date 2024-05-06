@@ -33,6 +33,9 @@ export const styles = StyleSheet.create({
     color: theme.colors.primary,
     fontSize: 18,
   },
+  errorMessage: {
+    color: 'red',
+  },
   descriptionPassword: {
     color: theme.colors.primary,
     fontFamily: theme.fontFamily.regular,

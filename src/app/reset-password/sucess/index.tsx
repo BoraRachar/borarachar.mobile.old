@@ -20,7 +20,7 @@ export default function Sucess() {
         </Pressable>
       </View>
 
-      <View style={{}}>
+      <View>
         <View style={{ alignItems: 'center', marginTop: 24 }}>
           <ResetPasswordSucess />
         </View>
