@@ -101,4 +101,18 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
     backgroundColor: theme.colors.primary,
   },
+  passwordInfoTitle: {
+    fontSize: 14,
+    lineHeight: 19,
+    fontWeight: '400',
+    color: theme.colors.primary,
+    marginTop: 15,
+  },
+  passwordInfoListItem: {
+    fontSize: 14,
+    lineHeight: 19,
+    fontWeight: '400',
+    color: theme.colors.primary,
+    marginLeft: 10,
+  },
 })
