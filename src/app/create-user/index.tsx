@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { View, Text, Pressable } from 'react-native'
 import BackFrame from '../../assets/images/backFrame.svg'
 import ProgressBarComponent from '@/src/components/ProgressBarComponent/ProgressBarComponent'
-import EmailInput from './emailInput'
+import UserName from './userName'
 import { styles } from './styles'
 
 export default function CreateUser() {
@@ -28,7 +28,7 @@ export default function CreateUser() {
       </View>
       <ProgressBarComponent totalSteps={5} currentStep={step} />
       <View style={styles.formContainer}>
-        <EmailInput />
+        <UserName />
       </View>
     </View>
   )
