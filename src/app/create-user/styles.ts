@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingHorizontal: 24,
     width: '100%',
+    height: 72,
   },
   headerText: {
     color: theme.colors.primary,
@@ -39,7 +40,7 @@ export const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20,
+    marginBottom: 30,
   },
   titleInput: {
     color: theme.colors.primary,
@@ -90,5 +91,14 @@ export const styles = StyleSheet.create({
   arrowIcon: {
     marginLeft: 8,
     marginTop: 3,
+  },
+  userButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minWidth: '100%',
+    height: 48,
+    borderRadius: 6,
+    backgroundColor: theme.colors.primary,
   },
 })

@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { View, Text, Pressable } from 'react-native'
 import BackFrame from '../../assets/images/backFrame.svg'
 import ProgressBarComponent from '@/src/components/ProgressBarComponent/ProgressBarComponent'
-import NameInput from './nameInput'
+import EmailInput from './emailInput'
 import { styles } from './styles'
 
 export default function CreateUser() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
   const [step, setStep] = useState(1)
 
   function handleBackButton() {
@@ -28,7 +28,7 @@ export default function CreateUser() {
       </View>
       <ProgressBarComponent totalSteps={5} currentStep={step} />
       <View style={styles.formContainer}>
-        <NameInput />
+        <EmailInput />
       </View>
     </View>
   )
