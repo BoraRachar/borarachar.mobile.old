@@ -115,4 +115,9 @@ export const styles = StyleSheet.create({
     color: theme.colors.primary,
     marginLeft: 10,
   },
+  iconForm: {
+    position: 'absolute',
+    right: 10,
+    bottom: 10,
+  },
 })

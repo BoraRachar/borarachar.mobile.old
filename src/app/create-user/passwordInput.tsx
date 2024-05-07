@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   View,
   Text,
@@ -5,12 +6,20 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
+  Pressable,
 } from 'react-native'
 import { styles } from './styles'
 import { theme } from '@/src/theme'
 import ArrowRight from '../../assets/images/arrowRight.svg'
+import Eye from '../../assets/images/eye.svg'
 
 export default function PasswordInput() {
+  const [showPassword, setShowPassword] = useState<boolean>(false)
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword)
+  }
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -19,11 +28,17 @@ export default function PasswordInput() {
       <View style={styles.contentForm}>
         <View>
           <Text style={styles.titleInput}>Crie uma senha para a sua conta</Text>
-          <TextInput
-            style={styles.input}
-            secureTextEntry={true}
-            placeholderTextColor={theme.colors.secondary}
-          />
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <TextInput
+              style={styles.input}
+              secureTextEntry={showPassword}
+              placeholderTextColor={theme.colors.secondary}
+              cursorColor={theme.colors.tertiary}
+            />
+            <Pressable onPress={handleShowPassword} style={styles.iconForm}>
+              <Eye />
+            </Pressable>
+          </View>
           <View>
             <Text style={styles.passwordInfoTitle}>
               Deve conter no mínimo 8 caracteres sendo:
