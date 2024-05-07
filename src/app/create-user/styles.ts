@@ -120,4 +120,21 @@ export const styles = StyleSheet.create({
     right: 10,
     bottom: 10,
   },
+  checkboxContainer: {
+    marginTop: 20,
+    flexDirection: 'row',
+  },
+  checkboxInput: {
+    borderColor: theme.colors.primary,
+    borderWidth: 2,
+    borderRadius: 3,
+  },
+  checkboxText: {
+    color: theme.colors.primary,
+    marginLeft: 10,
+  },
+  checkboxLink: {
+    fontWeight: '600',
+    textDecorationLine: 'underline',
+  },
 })
