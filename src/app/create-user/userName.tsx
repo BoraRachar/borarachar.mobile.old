@@ -6,11 +6,13 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native'
+import { useNavigationControls } from '@/src/utils/CreateUserButtonsNavigation'
 import { styles } from './styles'
 import { theme } from '@/src/theme'
 import ArrowRight from '../../assets/images/arrowRight.svg'
 
 export default function UserName() {
+  const { handleNavigationButton } = useNavigationControls()
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -28,7 +30,7 @@ export default function UserName() {
           />
         </View>
         <View style={styles.buttonsContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleNavigationButton}>
             <View style={styles.userButton}>
               <Text style={styles.emailButtonText}>Senha</Text>
               <ArrowRight style={styles.arrowIcon} />

@@ -8,6 +8,7 @@ import {
   Platform,
   Pressable,
 } from 'react-native'
+import { useNavigationControls } from '@/src/utils/CreateUserButtonsNavigation'
 import { styles } from './styles'
 import { theme } from '@/src/theme'
 import ArrowRight from '../../assets/images/arrowRight.svg'
@@ -15,6 +16,7 @@ import Eye from '../../assets/images/eye.svg'
 
 export default function PasswordInput() {
   const [showPassword, setShowPassword] = useState<boolean>(false)
+  const { handleNavigationButton } = useNavigationControls()
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword)
@@ -55,7 +57,7 @@ export default function PasswordInput() {
           </View>
         </View>
         <View style={styles.buttonsContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleNavigationButton}>
             <View style={styles.userButton}>
               <Text style={styles.emailButtonText}>Termos</Text>
               <ArrowRight style={styles.arrowIcon} />

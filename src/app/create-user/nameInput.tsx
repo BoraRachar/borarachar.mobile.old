@@ -6,11 +6,15 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native'
+import { useNavigationControls } from '@/src/utils/CreateUserButtonsNavigation'
+import { router } from 'expo-router'
 import { styles } from './styles'
 import { theme } from '@/src/theme'
 import ArrowRight from '../../assets/images/arrowRight.svg'
 
 export default function NameInput() {
+  const { handleNavigationButton } = useNavigationControls()
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -28,12 +32,12 @@ export default function NameInput() {
           />
         </View>
         <View style={styles.buttonsContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push('/')}>
             <View style={styles.cancelButton}>
               <Text style={styles.cancelButtonText}>Cancelar</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleNavigationButton}>
             <View style={styles.emailButton}>
               <Text style={styles.emailButtonText}>E-mail</Text>
               <ArrowRight style={styles.arrowIcon} />
