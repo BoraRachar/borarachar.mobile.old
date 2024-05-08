@@ -2,18 +2,20 @@ import { StyleSheet } from 'react-native'
 import { theme } from '@/src/theme'
 
 export const styles = StyleSheet.create({
-  onboardingContainer: {
+  successContainer: {
     justifyContent: 'space-between',
+    alignItems: 'center',
     height: '100%',
     paddingHorizontal: 8,
   },
-  Button: {
-    padding: 10,
+  button: {
+    width: '100%',
+    padding: 8,
     backgroundColor: theme.colors.primary,
     borderRadius: 10,
+    marginBottom: 20,
   },
   buttonArea: {
-    width: '100%',
     height: 36,
     alignItems: 'center',
     justifyContent: 'center',
@@ -23,25 +25,17 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-  Title: {
+  containerText: {
+    paddingTop: 12,
+  },
+  successTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     color: theme.colors.primary,
     marginTop: 20,
   },
-  containerText: {
-    paddingTop: 12,
-  },
-  Text: {
+  successText: {
     color: theme.colors.primary,
     fontSize: 16,
-  },
-  linkContainer: {
-    paddingTop: 10,
-    marginBottom: 20,
-  },
-  onboardingLink: {
-    fontSize: 16,
-    textDecorationLine: 'underline',
   },
 })

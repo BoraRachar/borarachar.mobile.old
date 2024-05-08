@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Pressable, Dimensions } from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions } from 'react-native'
 import { Link } from 'expo-router'
 import { styles } from '../styles'
 import Onboarding1 from '../../../assets/images/onboarding1.svg'
