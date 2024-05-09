@@ -117,8 +117,8 @@ export const styles = StyleSheet.create({
   },
   iconForm: {
     position: 'absolute',
-    right: 10,
-    bottom: 10,
+    right: 15,
+    bottom: 15,
   },
   checkboxContainer: {
     marginTop: 20,
@@ -136,5 +136,22 @@ export const styles = StyleSheet.create({
   checkboxLink: {
     fontWeight: '600',
     textDecorationLine: 'underline',
+  },
+  errorText: {
+    color: theme.colors.error,
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '400',
+    marginTop: 5,
+  },
+  inputError: {
+    width: '100%',
+    height: 48,
+    borderColor: theme.colors.error,
+    borderWidth: 1,
+    borderRadius: 8,
+    marginTop: 20,
+    padding: 10,
+    color: theme.colors.secondary,
   },
 })

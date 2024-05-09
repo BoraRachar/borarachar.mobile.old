@@ -15,10 +15,11 @@ import { router } from 'expo-router'
 import { styles } from './styles'
 import { theme } from '@/src/theme'
 import ArrowRight from '../../assets/images/arrowRight.svg'
+import WarningCircle from '../../assets/images/WarningCircle.svg'
 
 const schema = yup
   .object({
-    nome: yup.string().required('O nome é obrigatório'),
+    nome: yup.string().required('O campo deve ser preenchido'),
   })
   .required()
 
@@ -26,7 +27,7 @@ export default function NameInput() {
   const {
     control,
     handleSubmit,
-    formState: { isDirty },
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   })
@@ -53,15 +54,21 @@ export default function NameInput() {
             control={control}
             name="nome"
             render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={styles.input}
-                placeholder="João"
-                placeholderTextColor={theme.colors.secondary}
-                value={value}
-                onChangeText={onChange}
-              />
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <TextInput
+                  style={errors.nome ? styles.inputError : styles.input}
+                  placeholder="João"
+                  placeholderTextColor={theme.colors.secondary}
+                  value={value}
+                  onChangeText={onChange}
+                />
+                {errors.nome && <WarningCircle style={styles.iconForm} />}
+              </View>
             )}
           />
+          {errors.nome && (
+            <Text style={styles.errorText}>{errors.nome.message}</Text>
+          )}
         </View>
         <View style={styles.buttonsContainer}>
           <TouchableOpacity onPress={() => router.push('/')}>
@@ -69,10 +76,7 @@ export default function NameInput() {
               <Text style={styles.cancelButtonText}>Cancelar</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={handleSubmit(onSubmit)}
-            disabled={!isDirty}
-          >
+          <TouchableOpacity onPress={handleSubmit(onSubmit)}>
             <View style={styles.emailButton}>
               <Text style={styles.emailButtonText}>E-mail</Text>
               <ArrowRight style={styles.arrowIcon} />
