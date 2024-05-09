@@ -18,7 +18,10 @@ import WarningCircle from '../../assets/images/WarningCircle.svg'
 
 const schema = yup
   .object({
-    apelido: yup.string().required('O campo deve ser preenchido'),
+    apelido: yup
+      .string()
+      .test((value) => value?.startsWith('@') || value === '')
+      .required('O campo deve ser preenchido'),
   })
   .required()
 
@@ -35,7 +38,7 @@ export default function UserName() {
   const { addUser } = useStore()
 
   const onSubmit = (data: FieldValues) => {
-    const username = `@${data.apelido}`
+    const username = data.apelido ? `@${data.apelido.trim()}` : ''
     addUser({ apelido: username })
     handleNavigationButton()
   }
@@ -53,6 +56,7 @@ export default function UserName() {
           <Controller
             control={control}
             name="apelido"
+            defaultValue=""
             render={({ field: { onChange, value } }) => (
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <TextInput
@@ -60,7 +64,12 @@ export default function UserName() {
                   placeholder="@"
                   placeholderTextColor={theme.colors.secondary}
                   value={value}
-                  onChangeText={onChange}
+                  onChangeText={(text) => {
+                    const formattedText = text.trim().startsWith('@')
+                      ? text.trim()
+                      : `@${text.trim()}`
+                    onChange(formattedText)
+                  }}
                 />
                 {errors.apelido && <WarningCircle style={styles.iconForm} />}
               </View>
