@@ -2,7 +2,7 @@ import { create } from 'zustand'
 
 interface UserData {
   nome: string
-  apleido: string
+  apelido: string
   email: string
   usuario: string
   password: string
@@ -18,7 +18,7 @@ interface CreateUserStore {
 
 const initialState: UserData = {
   nome: '',
-  apleido: '',
+  apelido: '',
   email: '',
   usuario: '',
   password: '',

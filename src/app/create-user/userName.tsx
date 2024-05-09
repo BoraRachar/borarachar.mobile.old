@@ -7,12 +7,39 @@ import {
   Platform,
 } from 'react-native'
 import { useNavigationControls } from '@/src/utils/CreateUserButtonsNavigation'
+import useStore from '@/src/store/CreateUserStore'
+import { useForm, Controller, FieldValues } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 import { styles } from './styles'
 import { theme } from '@/src/theme'
 import ArrowRight from '../../assets/images/arrowRight.svg'
+import WarningCircle from '../../assets/images/WarningCircle.svg'
+
+const schema = yup
+  .object({
+    apelido: yup.string().required('O campo deve ser preenchido'),
+  })
+  .required()
 
 export default function UserName() {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  })
+
   const { handleNavigationButton } = useNavigationControls()
+  const { addUser } = useStore()
+
+  const onSubmit = (data: FieldValues) => {
+    const username = `@${data.apelido}`
+    addUser({ apelido: username })
+    handleNavigationButton()
+  }
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -23,14 +50,28 @@ export default function UserName() {
           <Text style={styles.titleInput}>
             Agora escolha um nome de usuário
           </Text>
-          <TextInput
-            style={styles.input}
-            defaultValue="@"
-            placeholderTextColor={theme.colors.secondary}
+          <Controller
+            control={control}
+            name="apelido"
+            render={({ field: { onChange, value } }) => (
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <TextInput
+                  style={errors.apelido ? styles.inputError : styles.input}
+                  placeholder="@"
+                  placeholderTextColor={theme.colors.secondary}
+                  value={value}
+                  onChangeText={onChange}
+                />
+                {errors.apelido && <WarningCircle style={styles.iconForm} />}
+              </View>
+            )}
           />
+          {errors.apelido && (
+            <Text style={styles.errorText}>{errors.apelido.message}</Text>
+          )}
         </View>
         <View style={styles.buttonsContainer}>
-          <TouchableOpacity onPress={handleNavigationButton}>
+          <TouchableOpacity onPress={handleSubmit(onSubmit)}>
             <View style={styles.userButton}>
               <Text style={styles.emailButtonText}>Senha</Text>
               <ArrowRight style={styles.arrowIcon} />
