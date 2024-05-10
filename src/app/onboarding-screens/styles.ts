@@ -42,6 +42,6 @@ export const styles = StyleSheet.create({
   },
   onboardingLink: {
     fontSize: 16,
-    textDecorationLine: 'underline'
+    textDecorationLine: 'underline',
   },
 })

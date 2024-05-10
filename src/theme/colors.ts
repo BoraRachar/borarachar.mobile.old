@@ -3,4 +3,5 @@ export const colors = {
   secondary: '#BAC0CA',
   tertiary: '#EEF1F4',
   white: '#FFFFFF',
+  error: '#F04438',
 }
