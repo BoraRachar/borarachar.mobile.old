@@ -16,6 +16,8 @@ export const styles = StyleSheet.create({
     width: '100%',
     padding: 12,
     borderRadius: 8,
+  },
+  createAccountButtonText: {
     textAlign: 'center',
     color: theme.colors.white,
     fontSize: 16,
@@ -44,6 +46,8 @@ export const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 8,
     marginBottom: 16,
+  },
+  loginButtonText: {
     textAlign: 'center',
     color: theme.colors.primary,
     fontSize: 16,
@@ -55,6 +59,8 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     borderColor: theme.colors.primary,
     borderWidth: 1,
+  },
+  calculatorButtonText: {
     textAlign: 'center',
     color: theme.colors.primary,
     fontSize: 16,
