@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useStepStore } from '@/src/store/StepStore'
-import { View, Text, Pressable } from 'react-native'
+import { View } from 'react-native'
 import BackFrame from '../../assets/images/backFrame.svg'
 import ProgressBarComponent from '@/src/components/ProgressBarComponent/ProgressBarComponent'
 import NameInput from './nameInput'
@@ -8,6 +8,7 @@ import EmailInput from './emailInput'
 import UserName from './userName'
 import PasswordInput from './passwordInput'
 import TermsAndPrivacyPolicy from './TermsAndPrivacyPolicy'
+import Header from '@/src/components/HeaderComponent/HeaderComponent'
 import { styles } from './styles'
 
 export default function CreateUser() {
@@ -49,20 +50,13 @@ export default function CreateUser() {
       break
   }
 
+  const leftIcon = isVisible
+    ? { icon: <BackFrame />, onPress: handleBackButton }
+    : undefined
+
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.iconContainer}>
-          {isVisible && (
-            <Pressable onPress={() => handleBackButton()}>
-              <BackFrame />
-            </Pressable>
-          )}
-        </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.headerText}>Criar conta</Text>
-        </View>
-      </View>
+      <Header title="Criar conta" leftIcon={leftIcon} />
       <ProgressBarComponent totalSteps={totalSteps} currentStep={step} />
       <View style={styles.formContainer}>{formStep}</View>
     </View>

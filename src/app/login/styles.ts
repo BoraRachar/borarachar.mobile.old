@@ -1,110 +1,101 @@
+import { colors } from '@/src/theme/colors'
 import { StyleSheet } from 'react-native'
-import { colors } from '../../theme/colors'
 
 export const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 24,
-    height: '100%',
+    flex: 1,
+  },
+  formContainer: {
+    width: '90%',
+    height: '85%',
+    marginLeft: '5%',
     justifyContent: 'space-between',
   },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  titleContainer: {
     width: '100%',
-    marginBottom: 40,
-  },
-  headerTitle: {
-    color: colors.primary,
-    fontWeight: '500',
-    fontSize: 16,
-    textAlign: 'center',
-    width: '100%',
-    left: -40,
-  },
-  headerBackButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 50,
-    backgroundColor: colors.tertiary,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   title: {
-    fontWeight: 'bold',
-    fontSize: 32,
-    color: colors.primary,
-    lineHeight: 36,
-    letterSpacing: -0.2,
+    fontSize: 30,
+    fontWeight: '700',
+    lineHeight: 38,
+    color: colors.textGray,
   },
-  subtitle: {
-    paddingTop: 8,
-    paddingBottom: 24,
-    color: colors.primary,
+  subTitle: {
     fontSize: 16,
-  },
-  inputField: {
-    borderWidth: 1,
-    borderColor: colors.primary,
-    borderRadius: 6,
-    marginTop: 4,
-    position: 'relative',
-    padding: 12,
-  },
-  eyeIcon: {
-    alignSelf: 'flex-end',
-    position: 'absolute',
-    top: 19,
-    right: 12,
-  },
-  label: {
-    fontSize: 14,
-    color: colors.primary,
-  },
-  inputContainer: {
-    paddingBottom: 8,
+    fontWeight: '400',
+    lineHeight: 24,
+    color: colors.textGray,
   },
   inputsGroup: {
     gap: 16,
+    marginTop: 35,
+  },
+  inputContainer: {
+    paddingBottom: 8,
+    gap: 8,
+  },
+  labelContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  label: {
+    fontSize: 14,
+    fontWeight: '500',
+    lineHeight: 20,
+    color: colors.textGray,
+  },
+  inputField: {
+    borderWidth: 1,
+    borderColor: colors.gray300,
+    height: 48,
+    borderRadius: 8,
+    padding: 10,
+    color: colors.gray600,
+    flexDirection: 'row',
+    alignItems: 'center',
+    position: 'relative',
+  },
+  iconForm: {
+    position: 'absolute',
+    right: 15,
+    top: '70%',
+    transform: [{ translateY: -12 }],
   },
   linkForgetPassword: {
-    color: colors.primary,
+    color: colors.textGray,
+    fontSize: 14,
     fontWeight: '500',
-  },
-  linkForgetPasswordLineBottom: {
-    borderBottomWidth: 1,
-    width: 133,
-    borderBottomColor: colors.primary,
-  },
-  buttonsContainer: {
-    gap: 16,
-    paddingTop: 48,
-    marginBottom: 42,
-    width: '100%',
+    lineHeight: 20,
+    alignSelf: 'flex-end',
+    textDecorationLine: 'underline',
   },
   loginButton: {
-    backgroundColor: colors.primary,
     width: '100%',
-    borderRadius: 6,
+    height: 48,
+    borderRadius: 8,
+    backgroundColor: colors.gray600,
+    justifyContent: 'center',
     alignItems: 'center',
-    padding: 12,
   },
-  loginTextButton: {
+  buttonsContainer: {
+    gap: 20,
+  },
+  loginButtonText: {
     color: colors.white,
-    fontWeight: '500',
     fontSize: 16,
+    fontWeight: '500',
+    lineHeight: 22,
+  },
+  createAccountText: {
+    alignSelf: 'center',
+    fontSize: 15,
+    fontWeight: '400',
+    lineHeight: 20,
+    color: colors.gray600,
   },
   createAccountButton: {
-    backgroundColor: colors.tertiary,
-    width: '100%',
-    padding: 12,
-    borderRadius: 6,
-    marginBottom: 8,
-    alignItems: 'center',
-  },
-  createAccountTextButton: {
-    color: colors.primary,
+    color: colors.gray700,
     fontWeight: '500',
-    fontSize: 16,
   },
 })
