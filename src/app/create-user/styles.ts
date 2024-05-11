@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 30,
+    marginBottom: 60,
   },
   titleInput: {
     color: theme.colors.primary,
