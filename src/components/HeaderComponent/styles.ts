@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginBottom: 24,
     paddingHorizontal: 20,
     borderBottomWidth: 0.5,
     borderBottomColor: theme.colors.gray,
@@ -25,7 +26,6 @@ export const styles = StyleSheet.create({
   leftIcon: {
     flex: 1,
     alignItems: 'flex-start',
-    marginLeft: -15,
   },
   rightIcon: {
     flex: 1,
