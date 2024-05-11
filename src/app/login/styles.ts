@@ -50,8 +50,17 @@ export const styles = StyleSheet.create({
     borderColor: colors.gray300,
     height: 48,
     borderRadius: 8,
-    paddingLeft: 10,
+    padding: 10,
     color: colors.gray600,
+    flexDirection: 'row',
+    alignItems: 'center',
+    position: 'relative',
+  },
+  iconForm: {
+    position: 'absolute',
+    right: 15,
+    top: '70%',
+    transform: [{ translateY: -12 }],
   },
   linkForgetPassword: {
     color: colors.textGray,

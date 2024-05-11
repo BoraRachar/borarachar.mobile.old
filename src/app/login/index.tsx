@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import { Link, router } from 'expo-router'
 import {
   View,
@@ -10,8 +10,15 @@ import {
 import { styles } from './styles'
 import Header from '@/src/components/HeaderComponent/HeaderComponent'
 import BackFrame from '../../assets/images/backFrame.svg'
+import OpenEye from '../../assets/images/openEye.svg'
+import CloseEye from '../../assets/images/closeEye.svg'
 
 export default function Login() {
+  const [showPassword, setShowPassword] = useState<boolean>(false)
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword)
+  }
   function handleBackToHome() {
     router.back()
   }
@@ -38,7 +45,13 @@ export default function Login() {
               <View style={styles.labelContainer}>
                 <Text style={styles.label}>Senha</Text>
               </View>
-              <TextInput style={styles.inputField} secureTextEntry={true} />
+              <TextInput
+                style={styles.inputField}
+                secureTextEntry={!showPassword}
+              />
+              <Pressable onPress={handleShowPassword} style={styles.iconForm}>
+                {!showPassword ? <CloseEye /> : <OpenEye />}
+              </Pressable>
             </View>
           </View>
           <Pressable onPress={() => router.push('/forgot-password/')}>
