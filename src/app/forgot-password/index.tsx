@@ -13,7 +13,9 @@ export default function ForgotPassword() {
     router.back()
   }
 
-  function handleSendRecoveryCode() {}
+  function handleSendRecoveryCode() {
+    router.push('/reset-password')
+  }
 
   return (
     <View style={styles.container}>

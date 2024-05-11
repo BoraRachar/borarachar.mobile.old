@@ -1,5 +1,5 @@
 import { Pressable, Text, TouchableOpacity, View } from 'react-native'
-import { OtpInput } from 'react-native-otp-entry'
+// import { OtpInput } from 'react-native-otp-entry'
 import { Ionicons } from '@expo/vector-icons'
 import { theme } from '@/src/theme'
 
@@ -15,7 +15,7 @@ export default function CodeInputPage({ setStep }) {
         </Text>
 
         <View style={{ marginTop: 24 }}>
-          <OtpInput
+          {/* <OtpInput
             numberOfDigits={6}
             focusColor={theme.colors.primary}
             secureTextEntry={true}
@@ -24,7 +24,7 @@ export default function CodeInputPage({ setStep }) {
               pinCodeTextStyle: styles.pinCodeText,
               pinCodeContainerStyle: styles.pinCodeContainer,
             }}
-          />
+          /> */}
         </View>
       </View>
 
