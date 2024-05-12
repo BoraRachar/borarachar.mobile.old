@@ -36,6 +36,11 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.colors.primary,
     borderRadius: 6,
   },
+  footer: {
+    flexShrink: 1,
+    paddingBottom: 24,
+    gap: 8,
+  },
   button: {
     width: '100%',
     height: 48,
