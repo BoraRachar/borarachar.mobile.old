@@ -36,11 +36,21 @@ export const styles = StyleSheet.create({
   contentForm: {
     flex: 1,
     justifyContent: 'space-between',
+    paddingBottom: 20,
+  },
+  scrollContentForm: {
+    flexGrow: 1,
+    paddingBottom: 20,
+    backgroundColor: theme.colors.tertiary,
+  },
+  contentFormSpecificBottom: {
+    flex: 1,
+    justifyContent: 'space-between',
+    paddingBottom: 60,
   },
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 60,
   },
   titleInput: {
     color: theme.colors.primary,
