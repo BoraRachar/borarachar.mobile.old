@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 import { useNavigationControls } from '@/src/utils/CreateUserButtonsNavigation'
 import useStore from '@/src/store/CreateUserStore'
+import useKeyboardStatus from '@/src/utils/keyboardUtils'
 import { useForm, Controller, FieldValues } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -36,6 +37,11 @@ export default function UserName() {
 
   const { handleNavigationButton } = useNavigationControls()
   const { addUser } = useStore()
+  const isKeyboardActive = useKeyboardStatus()
+
+  const contentFormStyle = isKeyboardActive
+    ? styles.contentFormSpecificBottom
+    : styles.contentForm
 
   const onSubmit = (data: FieldValues) => {
     const username = data.apelido ? `@${data.apelido.trim()}` : ''
@@ -48,7 +54,7 @@ export default function UserName() {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
-      <View style={styles.contentForm}>
+      <View style={contentFormStyle}>
         <View>
           <Text style={styles.titleInput}>
             Agora escolha um nome de usuário
