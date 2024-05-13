@@ -1,12 +1,12 @@
+import { useState } from 'react'
 import { View } from 'react-native'
 
-import ProgressBarComponent from '@/src/components/ProgressBarComponent'
 import Header from '@/src/components/HeaderComponent/HeaderComponent'
-import CodeInput from './codeInput'
-import NewPasswordPage from './newPasswordPage'
+import ProgressBarComponent from '@/src/components/ProgressBarComponent'
+import CodeInput from './codeInput/codeInput'
+import NewPassword from './newPassword/newPassword'
 
 import { styles } from './styles'
-import { useState } from 'react'
 
 export default function ResetPassword() {
   const [step, setStep] = useState<number>(1)
@@ -24,11 +24,7 @@ export default function ResetPassword() {
         <ProgressBarComponent totalSteps={totalSteps} currentStep={step} />
       </View>
 
-      {step === 1 ? (
-        <CodeInput increaseStep={increaseStep} />
-      ) : (
-        <NewPasswordPage />
-      )}
+      {step === 1 ? <CodeInput increaseStep={increaseStep} /> : <NewPassword />}
     </View>
   )
 }

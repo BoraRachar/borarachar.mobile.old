@@ -63,9 +63,9 @@ export default function CodeInput({ increaseStep }: CodeInputProps) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={{ flex: 1 }}
+      style={styles.container}
     >
-      <View style={styles.codeInputContent}>
+      <View style={styles.content}>
         <Text style={styles.subTitle}>
           Insira o código enviado ao seu e-mail
         </Text>
