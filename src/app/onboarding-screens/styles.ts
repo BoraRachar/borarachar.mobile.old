@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   onboardingContainer: {
     justifyContent: 'space-between',
     height: '100%',
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
   },
   Button: {
     padding: 10,

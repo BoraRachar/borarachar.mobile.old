@@ -4,7 +4,7 @@ import { theme } from '@/src/theme'
 export const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    paddingHorizontal: 8,
+    paddingHorizontal: 6,
   },
   containerButtons: {
     paddingTop: 100,

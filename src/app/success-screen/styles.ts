@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: '100%',
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
   },
   button: {
     width: '100%',
@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
     paddingTop: 12,
   },
   successTitle: {
-    fontSize: 24,
+    fontSize: 32,
     fontWeight: 'bold',
     color: theme.colors.primary,
     marginTop: 20,
