@@ -1,6 +1,7 @@
 import {
   KeyboardAvoidingView,
   Platform,
+  Pressable,
   ScrollView,
   Text,
   TextInput,
@@ -15,8 +16,12 @@ import OpenEye from '@/src/assets/images/openEye.svg'
 import { styles } from './styles'
 import { Ionicons } from '@expo/vector-icons'
 import { theme } from '@/src/theme'
+import { useState } from 'react'
 
 export default function NewPassword() {
+  const [showPassword1, setShowPassword1] = useState(false)
+  const [showPassword2, setShowPassword2] = useState(false)
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -44,8 +49,13 @@ export default function NewPassword() {
             </View>
 
             <View style={styles.input}>
-              <TextInput style={styles.textInput} secureTextEntry={true} />
-              <OpenEye />
+              <TextInput
+                style={styles.textInput}
+                secureTextEntry={showPassword1}
+              />
+              <Pressable onPress={() => setShowPassword1(!showPassword1)}>
+                {showPassword1 ? <OpenEye /> : <CloseEye />}
+              </Pressable>
             </View>
           </View>
 
@@ -53,8 +63,13 @@ export default function NewPassword() {
             <Text style={styles.label}>Confirmar nova senha</Text>
 
             <View style={styles.input}>
-              <TextInput style={styles.textInput} secureTextEntry={true} />
-              <OpenEye />
+              <TextInput
+                style={styles.textInput}
+                secureTextEntry={showPassword2}
+              />
+              <Pressable onPress={() => setShowPassword2(!showPassword2)}>
+                {showPassword2 ? <OpenEye /> : <CloseEye />}
+              </Pressable>
             </View>
           </View>
         </View>
