@@ -10,6 +10,10 @@ import {
   ScrollView,
 } from 'react-native'
 import { useNavigationControls } from '@/src/utils/CreateUserButtonsNavigation'
+import useStore from '@/src/store/CreateUserStore'
+import { useForm, Controller, FieldValues, useWatch } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 import useKeyboardStatus from '@/src/utils/keyboardUtils'
 import { styles } from './styles'
 import { theme } from '@/src/theme'
@@ -18,10 +22,27 @@ import OpenEye from '../../assets/images/openEye.svg'
 import CloseEye from '../../assets/images/closeEye.svg'
 import PasswordInfoComponent from '@/src/components/PasswordInfoComponent'
 
+const schema = yup
+  .object({
+    password: yup
+      .string()
+      .required('O campo deve ser preenchido')
+      .min(8, 'A senha deve ter pelo menos 8 caracteres'),
+  })
+  .required()
+
 export default function PasswordInput() {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  })
   const [showPassword, setShowPassword] = useState<boolean>(false)
-  const [password, setPassword] = useState<string>('')
   const { handleNavigationButton } = useNavigationControls()
+  const password = useWatch({ control, name: 'password', defaultValue: '' })
+  const { addUser } = useStore()
   const isKeyboardActive = useKeyboardStatus()
   const scrollViewRef = useRef<ScrollView>(null)
 
@@ -35,6 +56,11 @@ export default function PasswordInput() {
 
   const handleScrollToEnd = () => {
     scrollViewRef.current?.scrollToEnd({ animated: true })
+  }
+
+  const onSubmit = (data: FieldValues) => {
+    addUser({ password: data.password })
+    handleNavigationButton()
   }
 
   useEffect(() => {
@@ -54,24 +80,36 @@ export default function PasswordInput() {
             <Text style={styles.titleInput}>
               Crie uma senha para a sua conta
             </Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <TextInput
-                style={styles.input}
-                secureTextEntry={!showPassword}
-                placeholderTextColor={theme.colors.secondary}
-                cursorColor={theme.colors.tertiary}
-                value={password}
-                onChangeText={setPassword}
-              />
-              <Pressable onPress={handleShowPassword} style={styles.iconForm}>
-                {!showPassword ? <CloseEye /> : <OpenEye />}
-              </Pressable>
-            </View>
+            <Controller
+              control={control}
+              name="password"
+              render={({ field: { onChange, value } }) => (
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <TextInput
+                    style={styles.input}
+                    secureTextEntry={!showPassword}
+                    placeholderTextColor={theme.colors.secondary}
+                    cursorColor={theme.colors.tertiary}
+                    value={value}
+                    onChangeText={onChange}
+                  />
+                  <Pressable
+                    onPress={handleShowPassword}
+                    style={styles.iconForm}
+                  >
+                    {!showPassword ? <CloseEye /> : <OpenEye />}
+                  </Pressable>
+                </View>
+              )}
+            />
+            {errors.password && (
+              <Text style={styles.errorText}>{errors.password.message}</Text>
+            )}
             <PasswordInfoComponent password={password} />
           </View>
         </ScrollView>
         <View style={[styles.buttonsContainer, { marginTop: 20 }]}>
-          <TouchableOpacity onPress={handleNavigationButton}>
+          <TouchableOpacity onPress={handleSubmit(onSubmit)}>
             <View style={styles.userButton}>
               <Text style={styles.emailButtonText}>Termos</Text>
               <ArrowRight style={styles.arrowIcon} />
