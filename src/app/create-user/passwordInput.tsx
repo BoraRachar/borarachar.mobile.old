@@ -42,13 +42,14 @@ export default function PasswordInput() {
       handleScrollToEnd()
     }
   }, [isKeyboardActive])
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
       <View style={contentFormStyle}>
-        <ScrollView ref={scrollViewRef}>
+        <ScrollView ref={scrollViewRef} showsVerticalScrollIndicator={false}>
           <View>
             <Text style={styles.titleInput}>
               Crie uma senha para a sua conta
