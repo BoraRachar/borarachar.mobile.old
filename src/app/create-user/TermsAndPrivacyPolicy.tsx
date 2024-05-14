@@ -1,13 +1,25 @@
 import { View, Text, TouchableOpacity } from 'react-native'
+import { useEffect } from 'react'
 import { Link } from 'expo-router'
 import CheckBox from 'expo-checkbox'
 import { theme } from '@/src/theme'
 import { styles } from './styles'
 import useStore from '@/src/store/CreateUserStore'
+import { useStepStore } from '@/src/store/StepStore'
 export default function TermsAndPrivacyPolicy() {
   const { user } = useStore()
+  const { increaseStep } = useStepStore()
 
   const isButtonDisable = user.termoUso && user.politicasPrivacidade
+
+  const handleTermAndPolicy = () => {
+    if (user.termoUso) increaseStep()
+    if (user.politicasPrivacidade) increaseStep()
+  }
+
+  useEffect(() => {
+    handleTermAndPolicy()
+  }, [user.termoUso, user.politicasPrivacidade])
 
   return (
     <View style={styles.contentForm}>

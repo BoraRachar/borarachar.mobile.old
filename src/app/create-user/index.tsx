@@ -12,7 +12,7 @@ import Header from '@/src/components/HeaderComponent/HeaderComponent'
 import { styles } from './styles'
 
 export default function CreateUser() {
-  const totalSteps = 6
+  const totalSteps = 8
   const [isVisible, setIsVisible] = useState(true)
   const { step, decreaseStep } = useStepStore()
 
@@ -48,6 +48,8 @@ export default function CreateUser() {
     case 5:
       formStep = <TermsAndPrivacyPolicy />
       break
+    default:
+      formStep = <TermsAndPrivacyPolicy />
   }
 
   const leftIcon = isVisible
