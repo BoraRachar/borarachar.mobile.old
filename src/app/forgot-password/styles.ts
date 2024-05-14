@@ -31,7 +31,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderRadius: 8,
-    borderColor: theme.colors.gray300,
     paddingVertical: 12,
     paddingHorizontal: 16,
     marginBottom: 16,
@@ -57,5 +56,8 @@ export const styles = StyleSheet.create({
     fontFamily: theme.fontFamily.semiBold,
     fontSize: 14,
     textDecorationLine: 'underline',
+  },
+  errorMessage: {
+    color: theme.colors.Error500,
   },
 })
