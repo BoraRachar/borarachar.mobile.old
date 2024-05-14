@@ -20,7 +20,7 @@ import OpenEye from '@/src/assets/images/openEye.svg'
 import { theme } from '@/src/theme'
 
 import { styles } from './styles'
-import Badge from '@/src/components/Badge'
+import BadgeComponent from '@/src/components/BadgeComponent'
 
 const schema = yup.object().shape({
   newPassword: yup
@@ -75,7 +75,7 @@ export default function NewPassword() {
           <View>
             <View style={styles.labelContainer}>
               <Text style={styles.label}>Nova Senha</Text>
-              {Badge(newPassword)}
+              {BadgeComponent(newPassword)}
             </View>
 
             <Controller
