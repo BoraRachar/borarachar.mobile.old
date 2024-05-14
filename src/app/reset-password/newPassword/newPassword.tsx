@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native'
 import { router } from 'expo-router'
+import { useForm, Controller } from 'react-hook-form'
 
 import CloseEye from '@/src/assets/images/closeEye.svg'
 import OpenEye from '@/src/assets/images/openEye.svg'
@@ -21,6 +22,7 @@ import { useState } from 'react'
 export default function NewPassword() {
   const [showPassword1, setShowPassword1] = useState(false)
   const [showPassword2, setShowPassword2] = useState(false)
+  const { control } = useForm()
 
   return (
     <KeyboardAvoidingView
@@ -48,15 +50,23 @@ export default function NewPassword() {
               </View>
             </View>
 
-            <View style={styles.input}>
-              <TextInput
-                style={styles.textInput}
-                secureTextEntry={showPassword1}
-              />
-              <Pressable onPress={() => setShowPassword1(!showPassword1)}>
-                {showPassword1 ? <OpenEye /> : <CloseEye />}
-              </Pressable>
-            </View>
+            <Controller
+              control={control}
+              name="newPassword"
+              render={({ field: { onChange, value } }) => (
+                <View style={styles.input}>
+                  <TextInput
+                    style={styles.textInput}
+                    secureTextEntry={!showPassword1}
+                    value={value}
+                    onChangeText={onChange}
+                  />
+                  <Pressable onPress={() => setShowPassword1(!showPassword1)}>
+                    {!showPassword1 ? <OpenEye /> : <CloseEye />}
+                  </Pressable>
+                </View>
+              )}
+            />
           </View>
 
           <View>
@@ -65,10 +75,10 @@ export default function NewPassword() {
             <View style={styles.input}>
               <TextInput
                 style={styles.textInput}
-                secureTextEntry={showPassword2}
+                secureTextEntry={!showPassword2}
               />
               <Pressable onPress={() => setShowPassword2(!showPassword2)}>
-                {showPassword2 ? <OpenEye /> : <CloseEye />}
+                {!showPassword2 ? <OpenEye /> : <CloseEye />}
               </Pressable>
             </View>
           </View>
