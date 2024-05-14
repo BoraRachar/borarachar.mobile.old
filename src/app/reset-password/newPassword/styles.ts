@@ -36,21 +36,6 @@ export const styles = StyleSheet.create({
     fontFamily: theme.fontFamily.medium,
     fontSize: 14,
   },
-  badge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 4,
-    paddingVertical: 2,
-    paddingHorizontal: 8,
-    backgroundColor: theme.colors.Success50,
-    borderRadius: 16,
-  },
-  badgeText: {
-    color: theme.colors.Success700,
-    fontSize: 18,
-    fontFamily: theme.fontFamily.medium,
-  },
   input: {
     flexDirection: 'row',
     borderWidth: 1,
@@ -66,10 +51,10 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     color: theme.colors.gray900,
   },
-  descriptionPassword: {
-    color: theme.colors.primary,
-    fontFamily: theme.fontFamily.medium,
+  error: {
+    fontFamily: theme.fontFamily.regular,
     fontSize: 14,
+    color: theme.colors.error,
   },
   button: {
     width: '100%',
