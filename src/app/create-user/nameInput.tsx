@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 import { useNavigationControls } from '@/src/utils/CreateUserButtonsNavigation'
 import useStore from '@/src/store/CreateUserStore'
+import useKeyboardStatus from '@/src/utils/keyboardUtils'
 import { useForm, Controller, FieldValues } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -31,9 +32,13 @@ export default function NameInput() {
   } = useForm({
     resolver: yupResolver(schema),
   })
-
   const { handleNavigationButton } = useNavigationControls()
   const { addUser } = useStore()
+  const isKeyboardActive = useKeyboardStatus()
+
+  const contentFormStyle = isKeyboardActive
+    ? styles.contentFormSpecificBottom
+    : styles.contentForm
 
   const onSubmit = (data: FieldValues) => {
     addUser({ nome: data.nome })
@@ -45,7 +50,7 @@ export default function NameInput() {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
-      <View style={styles.contentForm}>
+      <View style={contentFormStyle}>
         <View>
           <Text style={styles.titleInput}>
             Como você gostaria de ser chamado?
