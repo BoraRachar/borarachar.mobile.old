@@ -20,6 +20,7 @@ import { theme } from '@/src/theme'
 import ArrowRight from '../../assets/images/arrowRight.svg'
 import OpenEye from '../../assets/images/openEye.svg'
 import CloseEye from '../../assets/images/closeEye.svg'
+import WarningCircle from '../../assets/images/WarningCircle.svg'
 import PasswordInfoComponent from '@/src/components/PasswordInfoComponent'
 
 const schema = yup
@@ -86,19 +87,23 @@ export default function PasswordInput() {
               render={({ field: { onChange, value } }) => (
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <TextInput
-                    style={styles.input}
+                    style={errors.password ? styles.inputError : styles.input}
                     secureTextEntry={!showPassword}
                     placeholderTextColor={theme.colors.secondary}
                     cursorColor={theme.colors.tertiary}
                     value={value}
                     onChangeText={onChange}
                   />
-                  <Pressable
-                    onPress={handleShowPassword}
-                    style={styles.iconForm}
-                  >
-                    {!showPassword ? <CloseEye /> : <OpenEye />}
-                  </Pressable>
+                  {!errors.password ? (
+                    <Pressable
+                      onPress={handleShowPassword}
+                      style={styles.iconForm}
+                    >
+                      {!showPassword ? <CloseEye /> : <OpenEye />}
+                    </Pressable>
+                  ) : (
+                    <WarningCircle style={styles.iconForm} />
+                  )}
                 </View>
               )}
             />

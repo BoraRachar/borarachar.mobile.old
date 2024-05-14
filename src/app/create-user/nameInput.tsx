@@ -62,7 +62,7 @@ export default function NameInput() {
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <TextInput
                   style={errors.nome ? styles.inputError : styles.input}
-                  placeholder="João"
+                  placeholder="Bora Rachar"
                   placeholderTextColor={theme.colors.secondary}
                   value={value}
                   onChangeText={onChange}
