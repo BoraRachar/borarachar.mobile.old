@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { Link } from 'expo-router'
 import CheckBox from 'expo-checkbox'
@@ -6,7 +5,6 @@ import { theme } from '@/src/theme'
 import { styles } from './styles'
 import useStore from '@/src/store/CreateUserStore'
 export default function TermsAndPrivacyPolicy() {
-  const [isCheckedPolicy, setIsCheckedPolicy] = useState(false)
   const { user } = useStore()
 
   const isButtonDisable = user.termoUso && user.politicasPrivacidade
@@ -32,21 +30,23 @@ export default function TermsAndPrivacyPolicy() {
         <View style={styles.checkboxContainer}>
           <CheckBox
             style={styles.checkboxInput}
-            value={isCheckedPolicy}
-            onValueChange={setIsCheckedPolicy}
+            value={user.politicasPrivacidade}
             disabled={!user.politicasPrivacidade}
-            color={isCheckedPolicy ? theme.colors.primary : undefined}
+            color={user.politicasPrivacidade ? theme.colors.primary : undefined}
           />
           <Text style={styles.checkboxText}>
             Eu li e concordo com a{' '}
-            <Link push href="/" style={styles.checkboxLink}>
+            <Link push href="/privacy-policy/" style={styles.checkboxLink}>
               Política de Privacidade
             </Link>
           </Text>
         </View>
       </View>
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity disabled={isButtonDisable}>
+        <TouchableOpacity
+          disabled={!isButtonDisable}
+          onPress={() => alert(JSON.stringify(user))}
+        >
           <View style={styles.userButton}>
             <Text style={styles.emailButtonText}>Criar conta</Text>
           </View>
