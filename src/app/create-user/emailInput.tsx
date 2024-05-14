@@ -19,7 +19,10 @@ import WarningCircle from '../../assets/images/WarningCircle.svg'
 
 const schema = yup
   .object({
-    email: yup.string().email().required('Insira um e-mail válido'),
+    email: yup
+      .string()
+      .email('Insira um e-mail válido')
+      .required('O campo deve ser preenchido'),
   })
   .required()
 
