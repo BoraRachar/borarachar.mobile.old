@@ -41,7 +41,6 @@ export const styles = StyleSheet.create({
   scrollContentForm: {
     flexGrow: 1,
     paddingBottom: 20,
-    backgroundColor: theme.colors.tertiary,
   },
   contentFormSpecificBottom: {
     flex: 1,
