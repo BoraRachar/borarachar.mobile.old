@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { useForm, Controller } from 'react-hook-form'
 
 import BackFrame from '@/src/assets/images/backFrame.svg'
 import ForgotPasswordAmico from '@/src/assets/images/forgot-password-amico.svg'
@@ -19,6 +20,7 @@ import { Ionicons } from '@expo/vector-icons'
 
 export default function ForgotPassword() {
   const router = useRouter()
+  const { control, handleSubmit } = useForm({})
   const handleBackButton = () => {
     router.back()
   }
@@ -51,14 +53,22 @@ export default function ForgotPassword() {
 
           <View>
             <Text style={styles.label}>E-mail</Text>
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.input}
-                placeholder="joão@mail.com"
-                keyboardType="email-address"
-              />
-              <Ionicons name="alert-circle-outline" size={18} />
-            </View>
+            <Controller
+              control={control}
+              name="email"
+              render={({ field: { onChange, value } }) => (
+                <View style={styles.inputContainer}>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="joão@mail.com"
+                    keyboardType="email-address"
+                    value={value}
+                    onChangeText={onChange}
+                  />
+                  <Ionicons name="alert-circle-outline" size={18} />
+                </View>
+              )}
+            />
           </View>
         </ScrollView>
 

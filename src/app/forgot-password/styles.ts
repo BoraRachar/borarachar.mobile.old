@@ -34,6 +34,7 @@ export const styles = StyleSheet.create({
     borderColor: theme.colors.gray300,
     paddingVertical: 12,
     paddingHorizontal: 16,
+    marginBottom: 16,
   },
   input: {
     width: '95%',
