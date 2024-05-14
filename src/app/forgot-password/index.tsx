@@ -1,74 +1,79 @@
-import Ionicons from '@expo/vector-icons/build/Ionicons'
-import { useRouter } from 'expo-router'
-import { View, Text, TextInput, Pressable } from 'react-native'
-import { styles } from './styles'
-import { colors } from '@/src/theme/colors'
+import Header from '@/src/components/HeaderComponent/HeaderComponent'
+import {
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native'
 
-import ForgotPasswordAmico from '../../assets/images/forgot-password-amico.svg'
+import BackFrame from '@/src/assets/images/backFrame.svg'
+import ForgotPasswordAmico from '@/src/assets/images/forgot-password-amico.svg'
+
+import { styles } from './styles'
+import { useRouter } from 'expo-router'
+import { Ionicons } from '@expo/vector-icons'
 
 export default function ForgotPassword() {
   const router = useRouter()
-
-  function handleBackToLogin() {
+  const handleBackButton = () => {
     router.back()
-  }
-
-  function handleSendRecoveryCode() {
-    router.push('/reset-password')
   }
 
   return (
     <View style={styles.container}>
-      <View>
-        <View style={styles.header}>
-          <Pressable
-            style={styles.headerBackButton}
-            onPress={handleBackToLogin}
-          >
-            <Ionicons name="arrow-back" size={20} color={colors.primary} />
-          </Pressable>
-          <Text style={styles.headerTitle}>Esqueci minha senha</Text>
-        </View>
+      <Header
+        title="Redefinir Senha"
+        leftIcon={{ icon: <BackFrame />, onPress: handleBackButton }}
+      />
 
-        <ForgotPasswordAmico
-          style={{ alignSelf: 'center' }}
-          width={256}
-          height={256}
-        />
-
-        <Text style={styles.title}>Esqueceu sua senha?</Text>
-        <Text style={styles.subtitle}>
-          Não se preocupe! Digite seu e-mail e enviaremos um código de
-          recuperação para você criar uma nova senha.
-        </Text>
-
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>E-mail</Text>
-          <TextInput
-            style={styles.inputField}
-            selectionColor={colors.primary}
-            placeholder="joão@email.com"
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ paddingHorizontal: 24, flex: 1 }}
+      >
+        <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+          <ForgotPasswordAmico
+            style={{ alignSelf: 'center' }}
+            width={256}
+            height={256}
           />
-        </View>
-      </View>
 
-      <View>
-        <Pressable
-          onPress={handleSendRecoveryCode}
-          style={styles.sendRecoveryCodeButton}
-        >
-          <Text style={styles.sendRecoveryCodeTextButton}>
-            Enviar código de recuperação
-          </Text>
-        </Pressable>
+          <View>
+            <Text style={styles.subtitle}>Esqueceu sua senha?</Text>
+            <Text style={styles.description}>
+              Não se preocupe! Digite seu e-mail e enviaremos um código de
+              recuperação para você criar uma nova senha.
+            </Text>
+          </View>
 
-        <View style={styles.LinkLoginContainer}>
-          <Text style={styles.textLinkLogin} onPress={handleBackToLogin}>
-            Lembrei minha senha
-          </Text>
-          <View style={styles.linkLoginLineBottom} />
+          <View>
+            <Text style={styles.label}>E-mail</Text>
+            <View style={styles.inputContainer}>
+              <TextInput
+                style={styles.input}
+                placeholder="joão@mail.com"
+                keyboardType="email-address"
+              />
+              <Ionicons name="alert-circle-outline" size={18} />
+            </View>
+          </View>
+        </ScrollView>
+
+        <View style={{ gap: 8, marginBottom: 20 }}>
+          <TouchableOpacity style={styles.sendRecoveryCodeButton}>
+            <Text style={styles.sendRecoveryCodeTextButton}>
+              Enviar código de recuperação
+            </Text>
+          </TouchableOpacity>
+
+          <Pressable>
+            <Text style={styles.textLinkLogin}>Lembrou sua senha?</Text>
+          </Pressable>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </View>
   )
 }
