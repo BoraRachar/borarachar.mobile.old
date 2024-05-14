@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'expo-router'
+import { router } from 'expo-router'
 import { useAsyncStorage } from '@react-native-async-storage/async-storage'
-import { View, Text, Dimensions } from 'react-native'
+import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
 import { styles } from './styles'
 import OnboardingScreen1 from './onboarding-screens/onboarding1'
 import Logo from '../assets/images/logo.svg'
@@ -47,22 +47,31 @@ export default function Index() {
             >
               <Logo />
               <View style={styles.containerButtons}>
-                <Link href="/" style={styles.createAccountButton}>
-                  Criar minha conta
-                </Link>
+                <TouchableOpacity
+                  style={styles.createAccountButton}
+                  onPress={() => router.push('/create-user/')}
+                >
+                  <Text style={styles.createAccountButtonText}>
+                    Criar minha conta
+                  </Text>
+                </TouchableOpacity>
                 <View style={styles.horizontalLineWithTextContainer}>
                   <View style={styles.horizontalLine} />
                   <Text style={styles.horizontalText}>OU</Text>
                   <View style={styles.horizontalLine} />
                 </View>
-
-                <Link href="/login" style={styles.loginButton}>
-                  Fazer login
-                </Link>
-
-                <Link href="/" style={styles.calculatorButton}>
-                  Calculadora
-                </Link>
+                <TouchableOpacity
+                  style={styles.loginButton}
+                  onPress={() => router.push('/login/')}
+                >
+                  <Text style={styles.loginButtonText}>Fazer login</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.calculatorButton}
+                  onPress={() => router.push('/')}
+                >
+                  <Text style={styles.calculatorButtonText}>Calculadora</Text>
+                </TouchableOpacity>
               </View>
             </View>
           )}
