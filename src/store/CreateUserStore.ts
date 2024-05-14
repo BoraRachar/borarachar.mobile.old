@@ -6,7 +6,6 @@ interface UserData {
   email: string
   usuario: string
   password: string
-  confirmPassword: string
   termoUso: boolean
   politicasPrivacidade: boolean
 }
@@ -22,7 +21,6 @@ const initialState: UserData = {
   email: '',
   usuario: '',
   password: '',
-  confirmPassword: '',
   termoUso: false,
   politicasPrivacidade: false,
 }

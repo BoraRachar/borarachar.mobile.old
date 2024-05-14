@@ -4,10 +4,12 @@ import { Link } from 'expo-router'
 import CheckBox from 'expo-checkbox'
 import { theme } from '@/src/theme'
 import { styles } from './styles'
-
+import useStore from '@/src/store/CreateUserStore'
 export default function TermsAndPrivacyPolicy() {
-  const [isCheckedTerms, setIsCheckedTerms] = useState(false)
   const [isCheckedPolicy, setIsCheckedPolicy] = useState(false)
+  const { user } = useStore()
+
+  const isButtonDisable = user.termoUso && user.politicasPrivacidade
 
   return (
     <View style={styles.contentForm}>
@@ -16,13 +18,13 @@ export default function TermsAndPrivacyPolicy() {
         <View style={styles.checkboxContainer}>
           <CheckBox
             style={styles.checkboxInput}
-            value={isCheckedTerms}
-            onValueChange={setIsCheckedTerms}
-            color={isCheckedTerms ? theme.colors.primary : undefined}
+            value={user.termoUso}
+            disabled={!user.termoUso}
+            color={user.termoUso ? theme.colors.primary : undefined}
           />
           <Text style={styles.checkboxText}>
             Eu li e concordo com os{' '}
-            <Link push href="/" style={styles.checkboxLink}>
+            <Link push href="/term-service/" style={styles.checkboxLink}>
               Termos de Serviço
             </Link>
           </Text>
@@ -32,6 +34,7 @@ export default function TermsAndPrivacyPolicy() {
             style={styles.checkboxInput}
             value={isCheckedPolicy}
             onValueChange={setIsCheckedPolicy}
+            disabled={!user.politicasPrivacidade}
             color={isCheckedPolicy ? theme.colors.primary : undefined}
           />
           <Text style={styles.checkboxText}>
@@ -43,7 +46,7 @@ export default function TermsAndPrivacyPolicy() {
         </View>
       </View>
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity disabled={isButtonDisable}>
           <View style={styles.userButton}>
             <Text style={styles.emailButtonText}>Criar conta</Text>
           </View>
