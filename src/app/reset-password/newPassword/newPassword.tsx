@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native'
 import { router } from 'expo-router'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm, Controller, useWatch } from 'react-hook-form'
 
 import CloseEye from '@/src/assets/images/closeEye.svg'
 import OpenEye from '@/src/assets/images/openEye.svg'
@@ -18,11 +18,18 @@ import { styles } from './styles'
 import { Ionicons } from '@expo/vector-icons'
 import { theme } from '@/src/theme'
 import { useState } from 'react'
+import PasswordInfoComponent from '@/src/components/PasswordInfoComponent'
 
 export default function NewPassword() {
+  const { control } = useForm()
   const [showPassword1, setShowPassword1] = useState(false)
   const [showPassword2, setShowPassword2] = useState(false)
-  const { control } = useForm()
+
+  const newPassword = useWatch({
+    control,
+    name: 'newPassword',
+    defaultValue: '',
+  })
 
   return (
     <KeyboardAvoidingView
@@ -57,6 +64,8 @@ export default function NewPassword() {
                 <View style={styles.input}>
                   <TextInput
                     style={styles.textInput}
+                    placeholderTextColor={theme.colors.secondary}
+                    cursorColor={theme.colors.tertiary}
                     secureTextEntry={!showPassword1}
                     value={value}
                     onChangeText={onChange}
@@ -83,20 +92,7 @@ export default function NewPassword() {
             </View>
           </View>
         </View>
-
-        <View style={{ gap: 8, marginTop: 16 }}>
-          <Text style={styles.descriptionPassword}>
-            Deve conter no mínimo 8 caracteres e 3 dos itens a seguir:
-          </Text>
-          <Text style={styles.descriptionPassword}>1 maiúsculo</Text>
-          <Text style={styles.descriptionPassword}>1 minúsculo</Text>
-          <Text style={styles.descriptionPassword}>
-            1 numeral (1, 2, 3, 4...)
-          </Text>
-          <Text style={styles.descriptionPassword}>
-            1 especial (!, @, #, $, %, &, *, - ...)
-          </Text>
-        </View>
+        <PasswordInfoComponent password={newPassword} />
       </ScrollView>
 
       <TouchableOpacity
