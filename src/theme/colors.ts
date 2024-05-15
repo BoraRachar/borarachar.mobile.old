@@ -14,6 +14,18 @@ export const colors = {
   gray600: '#667085',
   gray700: '#344054',
   gray900: '#101828',
+  Success50: '#ECFDF3',
+  Success300: '#6CE9A6',
+  Success500: '#12B76A',
+  Success700: '#027A48',
+  Warning50: '#FFFAEB',
+  Warning300: '#FEC84B',
+  Warning500: '#FDB022',
+  Warning700: '#B54708',
+  Error50: '#FEF3F2',
+  Error300: '#FDA29B',
+  Error500: '#F04438',
+  Error700: '#B42318',
 
   success300: '#6CE9A6',
 }
