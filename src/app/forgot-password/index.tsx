@@ -143,7 +143,7 @@ export default function ForgotPassword() {
             </Text>
           </TouchableOpacity>
 
-          <Pressable onPress={handleBackButton}>
+          <Pressable onPress={() => router.push('/login')}>
             <Text style={styles.textLinkLogin}>Lembrou sua senha?</Text>
           </Pressable>
         </View>

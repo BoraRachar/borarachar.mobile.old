@@ -26,7 +26,6 @@ export const colors = {
   Error300: '#FDA29B',
   Error500: '#F04438',
   Error700: '#B42318',
-  gray900: '#101828',
 
   success300: '#6CE9A6',
 }
