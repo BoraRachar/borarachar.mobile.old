@@ -1,101 +1,86 @@
-import { colors } from '@/src/theme/colors'
 import { StyleSheet } from 'react-native'
+import { theme } from '@/src/theme'
 
 export const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 24,
-    justifyContent: 'space-between',
-    height: '100%',
+    flex: 1,
   },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
-    marginBottom: 24,
-  },
-  headerTitle: {
-    color: colors.primary,
-    fontWeight: '500',
-    fontSize: 16,
-    textAlign: 'center',
-    width: '100%',
-    left: -40,
-  },
-  headerBackButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 50,
-    backgroundColor: colors.tertiary,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
+  subtitle: {
     marginTop: 24,
     marginBottom: 8,
-    fontWeight: 'bold',
+    fontFamily: theme.fontFamily.bold,
     fontSize: 24,
-    color: colors.primary,
+    color: theme.colors.primary,
     lineHeight: 30,
     letterSpacing: -0.2,
   },
-  subtitle: {
-    color: colors.primary,
+  description: {
+    fontFamily: theme.fontFamily.regular,
+    color: theme.colors.primary,
     fontSize: 16,
-    lineHeight: 22,
+    lineHeight: 24,
     marginBottom: 24,
-  },
-  inputField: {
-    borderWidth: 1,
-    borderColor: colors.primary,
-    borderRadius: 6,
-    marginTop: 4,
-    position: 'relative',
-    padding: 12,
   },
   label: {
     fontSize: 14,
-    color: colors.primary,
+    fontFamily: theme.fontFamily.medium,
+    color: theme.colors.gray600,
   },
   inputContainer: {
-    paddingBottom: 8,
-  },
-  LinkLoginContainer: {
-    marginTop: 8,
-    marginBottom: 24,
+    flexDirection: 'row',
     alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderColor: theme.colors.success300,
+    color: theme.colors.secondary,
   },
-  textLinkLogin: {
-    color: colors.primary,
-    fontWeight: '500',
-    textAlign: 'center',
+  inputContainerError: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderColor: theme.colors.error,
+    color: theme.colors.secondary,
   },
-  linkLoginLineBottom: {
-    borderBottomWidth: 1,
-    width: 136,
-    borderBottomColor: colors.primary,
+  input: {
+    width: '95%',
   },
   sendRecoveryCodeButton: {
-    backgroundColor: colors.primary,
+    backgroundColor: theme.colors.gray600,
     width: '100%',
-    borderRadius: 6,
+    borderRadius: 8,
+    alignItems: 'center',
+    padding: 12,
+  },
+  disabledsendRecoveryCodeButton: {
+    backgroundColor: theme.colors.gray200,
+    width: '100%',
+    borderRadius: 8,
     alignItems: 'center',
     padding: 12,
   },
   sendRecoveryCodeTextButton: {
-    color: colors.white,
-    fontWeight: '500',
+    color: theme.colors.white,
+    fontFamily: theme.fontFamily.semiBold,
     fontSize: 16,
   },
-  createAccountButton: {
-    color: colors.primary,
-    fontWeight: '500',
+  disableSendRecoveryCodeTextButton: {
+    color: theme.colors.gray400,
+    fontFamily: theme.fontFamily.semiBold,
     fontSize: 16,
-    backgroundColor: colors.tertiary,
-    width: '100%',
-    padding: 12,
-    borderRadius: 6,
-    marginBottom: 8,
+  },
+  textLinkLogin: {
     textAlign: 'center',
+    color: theme.colors.gray600,
+    fontFamily: theme.fontFamily.semiBold,
+    fontSize: 14,
+    textDecorationLine: 'underline',
+  },
+  errorMessage: {
+    color: theme.colors.error,
   },
 })
