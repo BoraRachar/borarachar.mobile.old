@@ -48,6 +48,7 @@ export const styles = StyleSheet.create({
   },
   input: {
     width: '95%',
+    color: theme.colors.gray900,
   },
   sendRecoveryCodeButton: {
     backgroundColor: theme.colors.gray600,

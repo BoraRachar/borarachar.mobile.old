@@ -143,7 +143,7 @@ export default function ForgotPassword() {
             </Text>
           </TouchableOpacity>
 
-          <Pressable>
+          <Pressable onPress={handleBackButton}>
             <Text style={styles.textLinkLogin}>Lembrou sua senha?</Text>
           </Pressable>
         </View>
