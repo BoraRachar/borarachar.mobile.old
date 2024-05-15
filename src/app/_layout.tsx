@@ -4,6 +4,7 @@ import { Slot } from 'expo-router'
 import {
   useFonts,
   Inter_400Regular as InterRegular,
+  Inter_500Medium as InterMedium,
   Inter_600SemiBold as InterSemiBold,
   Inter_700Bold as InterBold,
 } from '@expo-google-fonts/inter'
@@ -11,6 +12,7 @@ import {
 export default function Layout() {
   const [fontsLoaded] = useFonts({
     InterRegular,
+    InterMedium,
     InterSemiBold,
     InterBold,
   })

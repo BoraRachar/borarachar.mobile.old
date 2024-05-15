@@ -1,72 +1,153 @@
-import Ionicons from '@expo/vector-icons/build/Ionicons'
-import { useRouter } from 'expo-router'
-import { View, Text, TextInput, Pressable } from 'react-native'
-import { styles } from './styles'
-import { colors } from '@/src/theme/colors'
+import Header from '@/src/components/HeaderComponent/HeaderComponent'
+import {
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native'
+import { useForm, Controller, useWatch, FieldValue } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 
-import ForgotPasswordAmico from '../../assets/images/forgot-password-amico.svg'
+import BackFrame from '@/src/assets/images/backFrame.svg'
+import ForgotPasswordAmico from '@/src/assets/images/forgot-password-amico.svg'
+import WarningCircle from '../../assets/images/WarningCircle.svg'
+import SucessCircle from '../../assets/images/sucessCircle.svg'
+
+import { styles } from './styles'
+import { useRouter } from 'expo-router'
+import { useEffect, useState } from 'react'
+
+const regexValidEmail =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .email('O campo deve ser um e-mail')
+    .required('O campo deve ser preenchido'),
+})
 
 export default function ForgotPassword() {
-  const router = useRouter()
+  const [emailIsVlid, setEmailIsValid] = useState(false)
+  const [isActiveButton, setIsActiveButton] = useState(false)
 
-  function handleBackToLogin() {
+  const router = useRouter()
+  const { control, handleSubmit } = useForm({ resolver: yupResolver(schema) })
+
+  const email = useWatch({ control, name: 'email', defaultValue: 'default' })
+
+  const verifyEmailIsValid = (email: string) => {
+    const validEmail = regexValidEmail.test(String(email).toLowerCase())
+    if (validEmail) {
+      setEmailIsValid(true)
+      setIsActiveButton(true)
+      return
+    }
+    setEmailIsValid(false)
+    setIsActiveButton(false)
+  }
+
+  useEffect(() => {
+    verifyEmailIsValid(email)
+  }, [email])
+
+  const handleBackButton = () => {
     router.back()
   }
 
-  function handleSendRecoveryCode() {}
+  const onSubmit = (data: FieldValue) => {
+    console.log(data)
+    router.push('/reset-password/')
+  }
 
   return (
     <View style={styles.container}>
-      <View>
-        <View style={styles.header}>
-          <Pressable
-            style={styles.headerBackButton}
-            onPress={handleBackToLogin}
-          >
-            <Ionicons name="arrow-back" size={20} color={colors.primary} />
-          </Pressable>
-          <Text style={styles.headerTitle}>Esqueci minha senha</Text>
-        </View>
+      <Header
+        title="Redefinir Senha"
+        leftIcon={{ icon: <BackFrame />, onPress: handleBackButton }}
+      />
 
-        <ForgotPasswordAmico
-          style={{ alignSelf: 'center' }}
-          width={256}
-          height={256}
-        />
-
-        <Text style={styles.title}>Esqueceu sua senha?</Text>
-        <Text style={styles.subtitle}>
-          Não se preocupe! Digite seu e-mail e enviaremos um código de
-          recuperação para você criar uma nova senha.
-        </Text>
-
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>E-mail</Text>
-          <TextInput
-            style={styles.inputField}
-            selectionColor={colors.primary}
-            placeholder="joão@email.com"
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ paddingHorizontal: 24, flex: 1 }}
+        keyboardVerticalOffset={-20}
+      >
+        <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+          <ForgotPasswordAmico
+            style={{ alignSelf: 'center' }}
+            width={256}
+            height={256}
           />
-        </View>
-      </View>
 
-      <View>
-        <Pressable
-          onPress={handleSendRecoveryCode}
-          style={styles.sendRecoveryCodeButton}
-        >
-          <Text style={styles.sendRecoveryCodeTextButton}>
-            Enviar código de recuperação
-          </Text>
-        </Pressable>
+          <View>
+            <Text style={styles.subtitle}>Esqueceu sua senha?</Text>
+            <Text style={styles.description}>
+              Não se preocupe! Digite seu e-mail e enviaremos um código de
+              recuperação para você criar uma nova senha.
+            </Text>
+          </View>
 
-        <View style={styles.LinkLoginContainer}>
-          <Text style={styles.textLinkLogin} onPress={handleBackToLogin}>
-            Lembrei minha senha
-          </Text>
-          <View style={styles.linkLoginLineBottom} />
+          <View>
+            <Text style={styles.label}>E-mail</Text>
+            <Controller
+              control={control}
+              name="email"
+              render={({ field: { value, onChange } }) => (
+                <View
+                  style={
+                    emailIsVlid
+                      ? styles.inputContainer
+                      : styles.inputContainerError
+                  }
+                >
+                  <TextInput
+                    style={styles.input}
+                    placeholder="joão@mail.com"
+                    keyboardType="email-address"
+                    value={value}
+                    onChangeText={onChange}
+                  />
+                  {emailIsVlid ? <SucessCircle /> : <WarningCircle />}
+                </View>
+              )}
+            />
+            {!emailIsVlid && (
+              <Text style={styles.errorMessage}>Insira um email valido</Text>
+            )}
+          </View>
+        </ScrollView>
+
+        <View style={{ gap: 8, marginBottom: 20 }}>
+          <TouchableOpacity
+            style={
+              isActiveButton
+                ? styles.sendRecoveryCodeButton
+                : styles.disabledsendRecoveryCodeButton
+            }
+            onPress={handleSubmit(onSubmit)}
+            disabled={!isActiveButton}
+          >
+            <Text
+              style={
+                isActiveButton
+                  ? styles.sendRecoveryCodeTextButton
+                  : styles.disableSendRecoveryCodeTextButton
+              }
+            >
+              Enviar código de recuperação
+            </Text>
+          </TouchableOpacity>
+
+          <Pressable onPress={handleBackButton}>
+            <Text style={styles.textLinkLogin}>Lembrou sua senha?</Text>
+          </Pressable>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </View>
   )
 }
