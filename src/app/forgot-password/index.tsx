@@ -39,7 +39,7 @@ const schema = yup.object().shape({
 export default function ForgotPassword() {
   const [emailIsVlid, setEmailIsValid] = useState(false)
   const [isActiveButton, setIsActiveButton] = useState(false)
-  const { setResetPassword, resetPassword } = resetPasswordStore()
+  const { setResetPassword } = resetPasswordStore()
 
   const router = useRouter()
   const { control, handleSubmit } = useForm({ resolver: yupResolver(schema) })

@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import resetPasswordStore from '@/src/store/ResetPasswordStore'
 import { styles } from './styles'
 import React, { useRef, useState } from 'react'
 import { Ionicons } from '@expo/vector-icons'
@@ -21,6 +22,7 @@ type CodeInputProps = {
 export default function CodeInput({ increaseStep }: CodeInputProps) {
   const [otp, setOTP] = useState<string[]>([])
   const inputRefs = useRef<TextInput[]>([])
+  const { setResetPassword } = resetPasswordStore()
 
   const getOTPvalue = (text: string, index: number) => {
     const newOTP = [...otp]
@@ -57,8 +59,11 @@ export default function CodeInput({ increaseStep }: CodeInputProps) {
     }
   }
 
-  // console.log(otp)
-  // console.log(otp.join(''))
+  const onSubmit = () => {
+    const otpString = otp.join('')
+    setResetPassword({ code: otpString })
+    increaseStep()
+  }
 
   return (
     <KeyboardAvoidingView
@@ -98,7 +103,7 @@ export default function CodeInput({ increaseStep }: CodeInputProps) {
       </View>
 
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.button} onPress={() => increaseStep()}>
+        <TouchableOpacity style={styles.button} onPress={onSubmit}>
           <Text style={styles.buttonText}>Nova Senha</Text>
           <Ionicons
             name="arrow-forward-outline"
