@@ -16,7 +16,7 @@ export default function TermService() {
   const { addUser } = useStore()
 
   const onSubmit = () => {
-    addUser({ termoUso: true })
+    addUser({ termosUso: true })
     router.back()
   }
 

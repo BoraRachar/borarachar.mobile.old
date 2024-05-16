@@ -19,7 +19,7 @@ import WarningCircle from '../../assets/images/WarningCircle.svg'
 
 const schema = yup
   .object({
-    apelido: yup.string().required('O campo deve ser preenchido'),
+    usuario: yup.string().required('O campo deve ser preenchido'),
   })
   .required()
 
@@ -41,7 +41,7 @@ export default function UserName() {
     : styles.contentForm
 
   const onSubmit = (data: FieldValues) => {
-    addUser({ apelido: data.apelido })
+    addUser({ usuario: data.usuario })
     handleNavigationButton()
   }
 
@@ -57,23 +57,23 @@ export default function UserName() {
           </Text>
           <Controller
             control={control}
-            name="apelido"
+            name="usuario"
             defaultValue=""
             render={({ field: { onChange, value } }) => (
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <TextInput
-                  style={errors.apelido ? styles.inputError : styles.input}
+                  style={errors.usuario ? styles.inputError : styles.input}
                   placeholder="BoraRachar123"
                   placeholderTextColor={theme.colors.secondary}
                   value={value}
                   onChangeText={onChange}
                 />
-                {errors.apelido && <WarningCircle style={styles.iconForm} />}
+                {errors.usuario && <WarningCircle style={styles.iconForm} />}
               </View>
             )}
           />
-          {errors.apelido && (
-            <Text style={styles.errorText}>{errors.apelido.message}</Text>
+          {errors.usuario && (
+            <Text style={styles.errorText}>{errors.usuario.message}</Text>
           )}
         </View>
         <View style={styles.buttonsContainer}>
