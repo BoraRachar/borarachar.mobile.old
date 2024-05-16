@@ -8,11 +8,7 @@ import useStore from '@/src/store/CreateUserStore'
 import { useStepStore } from '@/src/store/StepStore'
 import { axiosClient } from '@/src/utils/axios'
 import { AxiosError } from 'axios'
-
-interface ErrorResponse {
-  statusCode: number
-  errors: { userMessage: string }[]
-}
+import { ErrorResponse } from '@/src/interfaces/types'
 
 export default function TermsAndPrivacyPolicy() {
   const { user } = useStore()

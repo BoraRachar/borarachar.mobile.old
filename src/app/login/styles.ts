@@ -98,4 +98,11 @@ export const styles = StyleSheet.create({
     color: colors.gray700,
     fontWeight: '500',
   },
+  errorText: {
+    color: colors.error,
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '400',
+    marginTop: 5,
+  },
 })
