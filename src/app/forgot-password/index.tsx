@@ -9,9 +9,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import { useForm, Controller, useWatch, FieldValue } from 'react-hook-form'
+import { useForm, Controller, useWatch, FieldValues } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import resetPasswordStore from '@/src/store/ResetPasswordStore'
+import { axiosClient } from '@/src/utils/axios'
+import { AxiosError } from 'axios'
+import { ErrorResponse } from '@/src/interfaces/types'
 
 import BackFrame from '@/src/assets/images/backFrame.svg'
 import ForgotPasswordAmico from '@/src/assets/images/forgot-password-amico.svg'
@@ -28,13 +32,14 @@ const regexValidEmail =
 const schema = yup.object().shape({
   email: yup
     .string()
-    .email('O campo deve ser um e-mail')
+    .email('Insira um e-mail válido')
     .required('O campo deve ser preenchido'),
 })
 
 export default function ForgotPassword() {
   const [emailIsVlid, setEmailIsValid] = useState(false)
   const [isActiveButton, setIsActiveButton] = useState(false)
+  const { setResetPassword } = resetPasswordStore()
 
   const router = useRouter()
   const { control, handleSubmit } = useForm({ resolver: yupResolver(schema) })
@@ -60,9 +65,22 @@ export default function ForgotPassword() {
     router.back()
   }
 
-  const onSubmit = (data: FieldValue) => {
-    console.log(data)
-    router.push('/reset-password/')
+  const onSubmit = async (data: FieldValues) => {
+    setResetPassword({ email: data.email })
+
+    try {
+      await axiosClient.get('/user/forgot-password', {
+        params: {
+          email: data.email,
+        },
+      })
+      router.push('/reset-password/')
+    } catch (err) {
+      const error = err as AxiosError
+      const responseData = error.response?.data as ErrorResponse
+      const userMessage = responseData.errors[0]?.userMessage
+      alert(userMessage)
+    }
   }
 
   return (

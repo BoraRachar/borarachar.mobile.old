@@ -10,9 +10,13 @@ import {
 } from 'react-native'
 import { useState } from 'react'
 import { router } from 'expo-router'
+import { axiosClient } from '@/src/utils/axios'
+import { AxiosError } from 'axios'
+import { ErrorResponse } from '@/src/interfaces/types'
 import { useForm, Controller, FieldValues, useWatch } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import resetPasswordStore from '@/src/store/ResetPasswordStore'
 
 import PasswordInfoComponent from '@/src/components/PasswordInfoComponent'
 import CloseEye from '@/src/assets/images/closeEye.svg'
@@ -47,6 +51,7 @@ export default function NewPassword() {
   } = useForm({ resolver: yupResolver(schema) })
   const [showPassword1, setShowPassword1] = useState(false)
   const [showPassword2, setShowPassword2] = useState(false)
+  const { setResetPassword, resetPassword } = resetPasswordStore()
 
   const newPassword = useWatch({
     control,
@@ -54,9 +59,30 @@ export default function NewPassword() {
     defaultValue: '',
   })
 
+  const handleSaveToSate = (data: FieldValues) => {
+    setResetPassword({
+      novaSenha: data.newPassword,
+      confirmacaoSenha: data.confirmPassword,
+    })
+  }
+
+  const handleSubmitToApi = async () => {
+    if (resetPassword.novaSenha && resetPassword.confirmacaoSenha) {
+      try {
+        await axiosClient.post('/user/reset-password', resetPassword)
+        router.push('/reset-password/success/')
+      } catch (err) {
+        const error = err as AxiosError
+        const responseData = error.response?.data as ErrorResponse
+        const userMessage = responseData.errors[0]?.userMessage
+        console.log(userMessage)
+      }
+    }
+  }
+
   const onSubmit = (data: FieldValues) => {
-    console.log(data)
-    router.push('/reset-password/success/')
+    handleSaveToSate(data)
+    handleSubmitToApi()
   }
 
   return (

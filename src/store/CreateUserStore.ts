@@ -2,11 +2,10 @@ import { create } from 'zustand'
 
 interface UserData {
   nome: string
-  apelido: string
   email: string
   usuario: string
   password: string
-  termoUso: boolean
+  termosUso: boolean
   politicasPrivacidade: boolean
 }
 
@@ -17,11 +16,10 @@ interface CreateUserStore {
 
 const initialState: UserData = {
   nome: '',
-  apelido: '',
   email: '',
   usuario: '',
   password: '',
-  termoUso: false,
+  termosUso: false,
   politicasPrivacidade: false,
 }
 

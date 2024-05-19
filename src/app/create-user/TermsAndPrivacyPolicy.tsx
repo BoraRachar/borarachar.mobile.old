@@ -1,26 +1,42 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import { useEffect } from 'react'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 import CheckBox from 'expo-checkbox'
 import { theme } from '@/src/theme'
 import { styles } from './styles'
 import useStore from '@/src/store/CreateUserStore'
 import { useStepStore } from '@/src/store/StepStore'
+import { axiosClient } from '@/src/utils/axios'
+import { AxiosError } from 'axios'
+import { ErrorResponse } from '@/src/interfaces/types'
+
 export default function TermsAndPrivacyPolicy() {
   const { user } = useStore()
   const { increaseStep } = useStepStore()
 
-  const isButtonDisable = user.termoUso && user.politicasPrivacidade
+  const isButtonDisable = user.termosUso && user.politicasPrivacidade
 
   const handleTermAndPolicy = () => {
-    if (user.termoUso) increaseStep()
+    if (user.termosUso) increaseStep()
     if (user.politicasPrivacidade) increaseStep()
   }
 
   useEffect(() => {
     handleTermAndPolicy()
-  }, [user.termoUso, user.politicasPrivacidade])
+  }, [user.termosUso, user.politicasPrivacidade])
 
+  const handleCreateUser = async () => {
+    try {
+      await axiosClient.post('/user', user)
+      console.log('Usuário cadastrado com sucesso')
+      router.push('/success-screen/')
+    } catch (err) {
+      const error = err as AxiosError
+      const responseData = error.response?.data as ErrorResponse
+      const userMessage = responseData.errors[0]?.userMessage
+      console.log(userMessage)
+    }
+  }
   return (
     <View style={styles.contentForm}>
       <View>
@@ -28,9 +44,9 @@ export default function TermsAndPrivacyPolicy() {
         <View style={styles.checkboxContainer}>
           <CheckBox
             style={styles.checkboxInput}
-            value={user.termoUso}
-            disabled={!user.termoUso}
-            color={user.termoUso ? theme.colors.primary : undefined}
+            value={user.termosUso}
+            disabled={!user.termosUso}
+            color={user.termosUso ? theme.colors.primary : undefined}
           />
           <Text style={styles.checkboxText}>
             Eu li e concordo com os{' '}
@@ -57,7 +73,7 @@ export default function TermsAndPrivacyPolicy() {
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
           disabled={!isButtonDisable}
-          onPress={() => alert(JSON.stringify(user))}
+          onPress={handleCreateUser}
         >
           <View style={styles.userButton}>
             <Text style={styles.emailButtonText}>Criar conta</Text>
