@@ -8,7 +8,7 @@ interface ResetPasswordStore {
 
 const initialState: ResetPasswordData = {
   email: '',
-  code: '',
+  code: 0,
   novaSenha: '',
   confirmacaoSenha: '',
 }

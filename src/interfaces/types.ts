@@ -5,7 +5,7 @@ interface ErrorResponse {
 
 interface ResetPasswordData {
   email: string
-  code: string
+  code: number
   novaSenha: string
   confirmacaoSenha: string
 }
