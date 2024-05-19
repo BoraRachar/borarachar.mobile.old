@@ -61,7 +61,8 @@ export default function CodeInput({ increaseStep }: CodeInputProps) {
 
   const onSubmit = () => {
     const otpString = otp.join('')
-    setResetPassword({ code: otpString })
+    const otpNumber = parseInt(otpString, 10)
+    setResetPassword({ code: otpNumber })
     increaseStep()
   }
 
