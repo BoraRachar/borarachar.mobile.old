@@ -1,0 +1,24 @@
+{
+  "cli": {
+    "version": ">= 9.0.3"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk",
+        "env": {
+          "EXPO_PUBLIC_API_BASE_URL": "http://143.198.159.154/v1"
+        }
+      }
+    },
+    "production": {}
+  },
+  "submit": {
+    "production": {}
+  }
+}

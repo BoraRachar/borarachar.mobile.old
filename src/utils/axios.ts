@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-const API_BASE_URL =
-  process.env.API_BASE_URL || 'http://143.198.159.154/v1'
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL
 
 export const axiosClient = axios.create({
   baseURL: API_BASE_URL,
