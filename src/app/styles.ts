@@ -11,6 +11,20 @@ export const styles = StyleSheet.create({
     width: '90%',
     alignItems: 'center',
   },
+  primaryButton: {
+    width: '100%',
+    height: 48,
+    backgroundColor: theme.colors.gray[600],
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  primaryButtonText: {
+    fontSize: theme.sizes.fontSize16,
+    lineHeight: 24,
+    fontWeight: '500',
+    color: theme.colors.white,
+  },
   createAccountButton: {
     backgroundColor: theme.colors.primary,
     width: '100%',

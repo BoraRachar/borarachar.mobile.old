@@ -48,10 +48,10 @@ export default function Index() {
               <Logo />
               <View style={styles.containerButtons}>
                 <TouchableOpacity
-                  style={styles.createAccountButton}
+                  style={styles.primaryButton}
                   onPress={() => router.push('/create-user/')}
                 >
-                  <Text style={styles.createAccountButtonText}>
+                  <Text style={styles.primaryButtonText}>
                     Criar minha conta
                   </Text>
                 </TouchableOpacity>

@@ -1,7 +1,8 @@
 import React from 'react'
-import { View, Text, Pressable, Dimensions } from 'react-native'
+import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
 import { Link, router } from 'expo-router'
 import { styles } from '../styles'
+import { styles as globalStyles } from '../../styles'
 import Onboarding3 from '../../../assets/images/onboarding3.svg'
 import BackFrame from '../../../assets/images/backFrame.svg'
 
@@ -37,14 +38,12 @@ export default function OnboardingScreen3() {
           </View>
         </View>
         <View>
-          <Pressable
-            style={styles.Button}
+          <TouchableOpacity
+            style={globalStyles.primaryButton}
             onPress={() => router.push('/create-user/')}
           >
-            <View style={styles.buttonArea}>
-              <Text style={styles.buttonText}>Criar conta</Text>
-            </View>
-          </Pressable>
+            <Text style={globalStyles.primaryButtonText}>Criar conta</Text>
+          </TouchableOpacity>
           <View style={styles.linkContainer}>
             <View style={styles.buttonArea}>
               <Link push href="/">
