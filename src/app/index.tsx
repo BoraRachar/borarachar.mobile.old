@@ -67,10 +67,10 @@ export default function Index() {
                   <Text style={styles.secondaryButtonText}>Fazer Login</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  style={styles.calculatorButton}
+                  style={styles.tertiaryButton}
                   onPress={() => router.push('/')}
                 >
-                  <Text style={styles.calculatorButtonText}>Calculadora</Text>
+                  <Text style={styles.tertiaryButtonText}>Calculadora</Text>
                 </TouchableOpacity>
               </View>
             </View>

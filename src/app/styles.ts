@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   primaryButton: {
     width: '100%',
     height: 48,
-    backgroundColor: theme.colors.gray[600],
+    backgroundColor: theme.colors.Gray[600],
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
   secondaryButton: {
     width: '100%',
     height: 48,
-    backgroundColor: theme.colors.gray[200],
+    backgroundColor: theme.colors.Gray[200],
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
@@ -38,19 +38,23 @@ export const styles = StyleSheet.create({
     fontSize: theme.sizes.fontSize16,
     lineHeight: 24,
     fontWeight: 'bold',
-    color: theme.colors.gray[700],
+    color: theme.colors.Gray[700],
   },
-  createAccountButton: {
-    backgroundColor: theme.colors.primary,
+  tertiaryButton: {
     width: '100%',
-    padding: 12,
+    height: 48,
+    backgroundColor: theme.colors.white,
     borderRadius: 8,
+    borderWidth: 1,
+    borderColor: theme.colors.Gray[600],
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  createAccountButtonText: {
-    textAlign: 'center',
-    color: theme.colors.white,
-    fontSize: 16,
-    fontWeight: '500',
+  tertiaryButtonText: {
+    fontSize: theme.sizes.fontSize16,
+    lineHeight: 24,
+    fontWeight: 'bold',
+    color: theme.colors.Gray[600],
   },
   horizontalLineWithTextContainer: {
     flexDirection: 'row',
