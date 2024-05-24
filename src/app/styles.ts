@@ -22,8 +22,23 @@ export const styles = StyleSheet.create({
   primaryButtonText: {
     fontSize: theme.sizes.fontSize16,
     lineHeight: 24,
-    fontWeight: '500',
+    fontWeight: 'bold',
     color: theme.colors.white,
+  },
+  secondaryButton: {
+    width: '100%',
+    height: 48,
+    backgroundColor: theme.colors.gray[200],
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  secondaryButtonText: {
+    fontSize: theme.sizes.fontSize16,
+    lineHeight: 24,
+    fontWeight: 'bold',
+    color: theme.colors.gray[700],
   },
   createAccountButton: {
     backgroundColor: theme.colors.primary,
