@@ -46,9 +46,13 @@ export default function OnboardingScreen3() {
           </TouchableOpacity>
           <View style={styles.linkContainer}>
             <View style={styles.buttonArea}>
-              <Link push href="/">
-                <Text style={styles.onboardingLink}>Usar a calculadora</Text>
-              </Link>
+              <View style={globalStyles.textButton}>
+                <Link push href="/">
+                  <Text style={globalStyles.textButtonText}>
+                    Usar a calculadora
+                  </Text>
+                </Link>
+              </View>
             </View>
           </View>
         </View>

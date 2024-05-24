@@ -56,6 +56,19 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: theme.colors.Gray[600],
   },
+  textButton: {
+    width: '100%',
+    height: 48,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textButtonText: {
+    fontSize: theme.sizes.fontSize16,
+    lineHeight: 24,
+    color: theme.colors.Gray[600],
+    textDecorationLine: 'underline',
+    fontWeight: 'bold',
+  },
   horizontalLineWithTextContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -72,31 +85,5 @@ export const styles = StyleSheet.create({
     color: theme.colors.primary,
     fontSize: 16,
     fontWeight: 'bold',
-  },
-  loginButton: {
-    backgroundColor: theme.colors.tertiary,
-    width: '100%',
-    padding: 12,
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  loginButtonText: {
-    textAlign: 'center',
-    color: theme.colors.primary,
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  calculatorButton: {
-    width: '100%',
-    padding: 12,
-    borderRadius: 8,
-    borderColor: theme.colors.primary,
-    borderWidth: 1,
-  },
-  calculatorButtonText: {
-    textAlign: 'center',
-    color: theme.colors.primary,
-    fontSize: 16,
-    fontWeight: '500',
   },
 })
