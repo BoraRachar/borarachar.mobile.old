@@ -78,11 +78,11 @@ export const styles = StyleSheet.create({
   horizontalLine: {
     flex: 1,
     height: 1,
-    backgroundColor: theme.colors.tertiary,
+    backgroundColor: theme.colors.Gray[200],
   },
   horizontalText: {
     marginHorizontal: 10,
-    color: theme.colors.primary,
+    color: theme.colors.Gray[600],
     fontSize: 16,
     fontWeight: 'bold',
   },
