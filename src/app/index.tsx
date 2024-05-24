@@ -48,10 +48,10 @@ export default function Index() {
               <Logo />
               <View style={styles.containerButtons}>
                 <TouchableOpacity
-                  style={styles.createAccountButton}
+                  style={styles.primaryButton}
                   onPress={() => router.push('/create-user/')}
                 >
-                  <Text style={styles.createAccountButtonText}>
+                  <Text style={styles.primaryButtonText}>
                     Criar minha conta
                   </Text>
                 </TouchableOpacity>
@@ -61,16 +61,16 @@ export default function Index() {
                   <View style={styles.horizontalLine} />
                 </View>
                 <TouchableOpacity
-                  style={styles.loginButton}
+                  style={styles.secondaryButton}
                   onPress={() => router.push('/login/')}
                 >
-                  <Text style={styles.loginButtonText}>Fazer login</Text>
+                  <Text style={styles.secondaryButtonText}>Fazer Login</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  style={styles.calculatorButton}
+                  style={styles.tertiaryButton}
                   onPress={() => router.push('/')}
                 >
-                  <Text style={styles.calculatorButtonText}>Calculadora</Text>
+                  <Text style={styles.tertiaryButtonText}>Calculadora</Text>
                 </TouchableOpacity>
               </View>
             </View>

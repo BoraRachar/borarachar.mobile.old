@@ -1,7 +1,8 @@
 import React from 'react'
-import { View, Text, Pressable, Dimensions } from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions } from 'react-native'
 import { Link, router } from 'expo-router'
 import { styles } from '../styles'
+import { styles as globalStyles } from '../../styles'
 import Onboarding1 from '../../../assets/images/onboarding1.svg'
 
 const windowHeight = Dimensions.get('window').height
@@ -29,19 +30,19 @@ export default function OnboardingScreen1() {
         </View>
       </View>
       <View>
-        <Pressable
-          style={styles.Button}
+        <TouchableOpacity
+          style={globalStyles.primaryButton}
           onPress={() => router.push('/onboarding-screens/onboarding2/')}
         >
-          <View style={styles.buttonArea}>
-            <Text style={styles.buttonText}>Como funciona?</Text>
-          </View>
-        </Pressable>
+          <Text style={globalStyles.primaryButtonText}>Como funciona?</Text>
+        </TouchableOpacity>
         <View style={styles.linkContainer}>
           <View style={styles.buttonArea}>
-            <Link push href="/">
-              <Text style={styles.onboardingLink}>Pular</Text>
-            </Link>
+            <View style={globalStyles.textButton}>
+              <Link push href="/">
+                <Text style={globalStyles.textButtonText}>Pular</Text>
+              </Link>
+            </View>
           </View>
         </View>
       </View>
