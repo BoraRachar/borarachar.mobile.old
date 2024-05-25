@@ -1,8 +1,9 @@
 import React from 'react'
-import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, Dimensions } from 'react-native'
 import { Link, router } from 'expo-router'
 import { styles } from '../styles'
 import { styles as globalStyles } from '../../styles'
+import { ButtonCustomizer } from '@/src/components/ButtonCustomizer'
 import Onboarding3 from '../../../assets/images/onboarding3.svg'
 import BackFrame from '../../../assets/images/backFrame.svg'
 
@@ -38,20 +39,27 @@ export default function OnboardingScreen3() {
           </View>
         </View>
         <View>
-          <TouchableOpacity
-            style={globalStyles.primaryButton}
+          <ButtonCustomizer.Root
+            type="primary"
             onPress={() => router.push('/create-user/')}
           >
-            <Text style={globalStyles.primaryButtonText}>Criar conta</Text>
-          </TouchableOpacity>
+            <ButtonCustomizer.Title
+              title="Criar conta"
+              customStyles={globalStyles.primaryButtonText}
+            />
+          </ButtonCustomizer.Root>
           <View style={styles.linkContainer}>
             <View style={styles.buttonArea}>
               <View style={globalStyles.textButton}>
-                <Link push href="/">
-                  <Text style={globalStyles.textButtonText}>
-                    Usar a calculadora
-                  </Text>
-                </Link>
+                <ButtonCustomizer.Root
+                  type="textButton"
+                  onPress={() => router.push('/')}
+                >
+                  <ButtonCustomizer.Title
+                    title="Usar a calculadora"
+                    customStyles={globalStyles.textButtonText}
+                  />
+                </ButtonCustomizer.Root>
               </View>
             </View>
           </View>

@@ -1,8 +1,9 @@
 import React from 'react'
-import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, Dimensions } from 'react-native'
 import { Link, router } from 'expo-router'
 import { styles } from '../styles'
 import { styles as globalStyles } from '../../styles'
+import { ButtonCustomizer } from '@/src/components/ButtonCustomizer'
 import Onboarding2 from '../../../assets/images/onboarding2.svg'
 import BackFrame from '../../../assets/images/backFrame.svg'
 
@@ -36,21 +37,27 @@ export default function OnboardingScreen2() {
           </View>
         </View>
         <View>
-          <TouchableOpacity
-            style={globalStyles.primaryButton}
+          <ButtonCustomizer.Root
+            type="primary"
             onPress={() => router.push('/onboarding-screens/onboarding3/')}
           >
-            <Text style={globalStyles.primaryButtonText}>
-              E para gastos mais complexos?
-            </Text>
-          </TouchableOpacity>
+            <ButtonCustomizer.Title
+              title="E para gastos mais complexos?"
+              customStyles={globalStyles.primaryButtonText}
+            />
+          </ButtonCustomizer.Root>
+
           <View style={styles.linkContainer}>
             <View style={styles.buttonArea}>
-              <View style={globalStyles.textButton}>
-                <Link push href="/">
-                  <Text style={globalStyles.textButtonText}>Pular</Text>
-                </Link>
-              </View>
+              <ButtonCustomizer.Root
+                type="textButton"
+                onPress={() => router.push('/')}
+              >
+                <ButtonCustomizer.Title
+                  title="Pular"
+                  customStyles={globalStyles.textButtonText}
+                />
+              </ButtonCustomizer.Root>
             </View>
           </View>
         </View>
