@@ -28,9 +28,11 @@ export default function OnboardingScreen2() {
           <View style={{ alignItems: 'center' }}>
             <Onboarding2 />
           </View>
-          <Text style={styles.Title}>Calcule quanto cada um deverá pagar.</Text>
+          <Text style={globalStyles.mainTitle}>
+            Calcule quanto cada um deverá pagar.
+          </Text>
           <View style={styles.containerText}>
-            <Text style={styles.Text}>
+            <Text style={globalStyles.generalText}>
               Use a nossa calculadora de divisões para despesas rápidas como uma
               de restaurante.
             </Text>

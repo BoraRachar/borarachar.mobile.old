@@ -21,10 +21,12 @@ export default function OnboardingScreen1() {
         <View style={{ alignItems: 'center' }}>
           <Onboarding1 />
         </View>
-        <Text style={styles.Title}>Rápido, fácil e seguro.</Text>
+        <Text style={globalStyles.mainTitle}>Rápido, fácil e seguro.</Text>
         <View style={styles.containerText}>
-          <Text style={styles.Text}>Dividir as contas é moleza!</Text>
-          <Text style={styles.Text}>
+          <Text style={globalStyles.generalText}>
+            Dividir as contas é moleza!
+          </Text>
+          <Text style={globalStyles.generalText}>
             Basta adicionar as pessoas, escolher o pronto! O aplicativo faz o
             resto.
           </Text>

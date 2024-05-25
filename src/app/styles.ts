@@ -86,4 +86,16 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  mainTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    lineHeight: 32,
+    color: theme.colors.Gray[600],
+    marginTop: 24,
+  },
+  generalText: {
+    fontSize: 16,
+    lineHeight: 24,
+    color: theme.colors.Gray[600],
+  },
 })

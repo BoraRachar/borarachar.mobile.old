@@ -28,11 +28,11 @@ export default function OnboardingScreen3() {
           <View style={{ alignItems: 'center' }}>
             <Onboarding3 />
           </View>
-          <Text style={styles.Title}>
+          <Text style={globalStyles.mainTitle}>
             Crie grupos, adicione amigos e escolha o jeito que prefere dividir.
           </Text>
           <View style={styles.containerText}>
-            <Text style={styles.Text}>
+            <Text style={globalStyles.generalText}>
               Criando uma conta, você terá acesso a mais funcionalidades como
               histórico e novas modalidades de divisão.
             </Text>
