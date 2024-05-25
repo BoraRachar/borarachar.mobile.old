@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { router } from 'expo-router'
 import { useAsyncStorage } from '@react-native-async-storage/async-storage'
-import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, Dimensions } from 'react-native'
 import { ButtonCustomizer } from '../components/ButtonCustomizer'
 import { styles } from './styles'
 import OnboardingScreen1 from './onboarding-screens/onboarding1'
@@ -71,12 +71,15 @@ export default function Index() {
                     customStyles={styles.secondaryButtonText}
                   ></ButtonCustomizer.Title>
                 </ButtonCustomizer.Root>
-                <TouchableOpacity
-                  style={styles.tertiaryButton}
+                <ButtonCustomizer.Root
+                  type="tertiary"
                   onPress={() => router.push('/')}
                 >
-                  <Text style={styles.tertiaryButtonText}>Calculadora</Text>
-                </TouchableOpacity>
+                  <ButtonCustomizer.Title
+                    title="Calculadora"
+                    customStyles={styles.tertiaryButtonText}
+                  ></ButtonCustomizer.Title>
+                </ButtonCustomizer.Root>
               </View>
             </View>
           )}
