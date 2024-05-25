@@ -62,12 +62,15 @@ export default function Index() {
                   <Text style={styles.horizontalText}>OU</Text>
                   <View style={styles.horizontalLine} />
                 </View>
-                <TouchableOpacity
-                  style={styles.secondaryButton}
+                <ButtonCustomizer.Root
+                  type="secondary"
                   onPress={() => router.push('/login/')}
                 >
-                  <Text style={styles.secondaryButtonText}>Fazer Login</Text>
-                </TouchableOpacity>
+                  <ButtonCustomizer.Title
+                    title="Fazer Login"
+                    customStyles={styles.secondaryButtonText}
+                  ></ButtonCustomizer.Title>
+                </ButtonCustomizer.Root>
                 <TouchableOpacity
                   style={styles.tertiaryButton}
                   onPress={() => router.push('/')}
