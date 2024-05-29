@@ -4,11 +4,11 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Platform,
-  Keyboard,
 } from 'react-native'
 import { useNavigationControls } from '@/src/utils/CreateUserButtonsNavigation'
 import { useState, useEffect } from 'react'
 import useStore from '@/src/store/CreateUserStore'
+import usekeyboardStatus from '../../utils/keyboardUtils'
 import { ButtonCustomizer } from '../../components/ButtonCustomizer'
 import { useForm, Controller, FieldValues, useWatch } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -41,7 +41,7 @@ export default function EmailInput() {
   const { handleNavigationButton } = useNavigationControls()
   const { addUser } = useStore()
   const [isButtonDisable, setIsButtonDisable] = useState(true)
-  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false)
+  const isKeyboardVisible = usekeyboardStatus()
 
   const email = useWatch({ control, name: 'email', defaultValue: '' })
 
@@ -57,22 +57,6 @@ export default function EmailInput() {
       setIsButtonDisable(true)
     }
   }, [email])
-
-  useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      'keyboardDidShow',
-      () => setIsKeyboardVisible(true),
-    )
-    const keyboardDidHideListener = Keyboard.addListener(
-      'keyboardDidHide',
-      () => setIsKeyboardVisible(false),
-    )
-
-    return () => {
-      keyboardDidShowListener.remove()
-      keyboardDidHideListener.remove()
-    }
-  }, [])
 
   return (
     <KeyboardAvoidingView
