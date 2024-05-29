@@ -11,6 +11,7 @@ import { useForm, Controller, FieldValues } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { styles } from './styles'
+import { styles as globalStyles } from '../styles'
 import Header from '@/src/components/HeaderComponent/HeaderComponent'
 import BackFrame from '../../assets/images/backFrame.svg'
 import OpenEye from '../../assets/images/openEye.svg'
@@ -118,7 +119,7 @@ export default function Login() {
         </View>
         <View style={styles.buttonsContainer}>
           <TouchableOpacity
-            style={styles.loginButton}
+            style={globalStyles.primaryButton}
             onPress={handleSubmit(handleLogin)}
           >
             <Text style={styles.loginButtonText}>Login</Text>

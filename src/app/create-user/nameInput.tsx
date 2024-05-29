@@ -1,21 +1,24 @@
+import React, { useState, useEffect } from 'react'
 import {
   View,
   Text,
   TextInput,
-  TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
+  Keyboard,
 } from 'react-native'
 import { useNavigationControls } from '@/src/utils/CreateUserButtonsNavigation'
 import useStore from '@/src/store/CreateUserStore'
-import useKeyboardStatus from '@/src/utils/keyboardUtils'
-import { useForm, Controller, FieldValues } from 'react-hook-form'
+import { ButtonCustomizer } from '../../components/ButtonCustomizer'
+import { useForm, Controller, FieldValues, useWatch } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { router } from 'expo-router'
 import { styles } from './styles'
+import { styles as globalStyles } from '../styles'
 import { theme } from '@/src/theme'
 import ArrowRight from '../../assets/images/arrowRight.svg'
+import ArrowRightDisable from '../../assets/images/arrowRightDisable.svg'
 import WarningCircle from '../../assets/images/WarningCircle.svg'
 
 const schema = yup
@@ -34,25 +37,48 @@ export default function NameInput() {
   })
   const { handleNavigationButton } = useNavigationControls()
   const { addUser } = useStore()
-  const isKeyboardActive = useKeyboardStatus()
+  const [isButtonDisable, setIsButtonDisable] = useState(true)
+  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false)
 
-  const contentFormStyle = isKeyboardActive
-    ? styles.contentFormSpecificBottom
-    : styles.contentForm
+  const nome = useWatch({ control, name: 'nome', defaultValue: '' })
 
   const onSubmit = (data: FieldValues) => {
     addUser({ nome: data.nome })
     handleNavigationButton()
   }
 
+  useEffect(() => {
+    if (nome.trim().length > 0) {
+      setIsButtonDisable(false)
+    } else {
+      setIsButtonDisable(true)
+    }
+  }, [nome])
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => setIsKeyboardVisible(true),
+    )
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => setIsKeyboardVisible(false),
+    )
+
+    return () => {
+      keyboardDidShowListener.remove()
+      keyboardDidHideListener.remove()
+    }
+  }, [])
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
-      <View style={contentFormStyle}>
+      <View style={styles.contentForm}>
         <View>
-          <Text style={styles.titleInput}>
+          <Text style={globalStyles.createUserTitle}>
             Como você gostaria de ser chamado?
           </Text>
           <Controller
@@ -63,7 +89,7 @@ export default function NameInput() {
                 <TextInput
                   style={errors.nome ? styles.inputError : styles.input}
                   placeholder="Bora Rachar"
-                  placeholderTextColor={theme.colors.secondary}
+                  placeholderTextColor={theme.colors.Gray[300]}
                   value={value}
                   onChangeText={onChange}
                 />
@@ -75,20 +101,47 @@ export default function NameInput() {
             <Text style={styles.errorText}>{errors.nome.message}</Text>
           )}
         </View>
-        <View style={styles.buttonsContainer}>
-          <TouchableOpacity onPress={() => router.push('/')}>
-            <View style={styles.cancelButton}>
-              <Text style={styles.cancelButtonText}>Cancelar</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleSubmit(onSubmit)}>
-            <View style={styles.emailButton}>
-              <Text style={styles.emailButtonText}>E-mail</Text>
-              <ArrowRight style={styles.arrowIcon} />
-            </View>
-          </TouchableOpacity>
-        </View>
       </View>
+      {!isKeyboardVisible && (
+        <View style={styles.buttonsContainer}>
+          <ButtonCustomizer.Root
+            type="tertiaryHalfWidth"
+            onPress={() => router.push('/')}
+          >
+            <ButtonCustomizer.Title
+              title="Cancelar"
+              customStyles={globalStyles.tertiaryButtonText}
+            />
+          </ButtonCustomizer.Root>
+          <ButtonCustomizer.Root
+            type="primaryHalfWidth"
+            onPress={handleSubmit(onSubmit)}
+            disabled={isButtonDisable}
+            customStyles={
+              isButtonDisable
+                ? globalStyles.primaryButtonHalfWidthDisabled
+                : globalStyles.primaryButtonHalfWidth
+            }
+          >
+            <ButtonCustomizer.Title
+              title="E-mail"
+              customStyles={
+                isButtonDisable
+                  ? globalStyles.primaryButtonTextDisabled
+                  : globalStyles.primaryButtonText
+              }
+            />
+            <ButtonCustomizer.Icon
+              icon={isButtonDisable ? ArrowRightDisable : ArrowRight}
+              customStyles={
+                isButtonDisable
+                  ? globalStyles.primaryButtonIconDisabled
+                  : globalStyles.primaryButtonIcon
+              }
+            />
+          </ButtonCustomizer.Root>
+        </View>
+      )}
     </KeyboardAvoidingView>
   )
 }

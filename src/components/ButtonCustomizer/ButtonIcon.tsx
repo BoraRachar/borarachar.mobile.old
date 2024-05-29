@@ -1,9 +1,9 @@
 import { ElementType } from 'react'
-import { StyleProp, ViewStyle } from 'react-native'
+import { StyleProp, ViewStyle, ImageStyle } from 'react-native'
 
 interface ButtonIconProps {
   icon: ElementType
-  customStyles?: StyleProp<ViewStyle>
+  customStyles?: StyleProp<ViewStyle | ImageStyle>
 }
 
 export function ButtonIcon({ icon: Icon, customStyles }: ButtonIconProps) {

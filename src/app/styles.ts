@@ -19,11 +19,41 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  primaryButtonHalfWidth: {
+    width: '48%',
+    height: 48,
+    backgroundColor: theme.colors.Gray[600],
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  primaryButtonHalfWidthDisabled: {
+    width: '48%',
+    height: 48,
+    backgroundColor: theme.colors.Gray[200],
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   primaryButtonText: {
     fontSize: theme.sizes.fontSize16,
     lineHeight: 24,
     fontWeight: 'bold',
+    paddingRight: 8,
     color: theme.colors.white,
+  },
+  primaryButtonTextDisabled: {
+    fontSize: theme.sizes.fontSize16,
+    lineHeight: 24,
+    fontWeight: 'bold',
+    paddingRight: 8,
+    color: theme.colors.Gray[400],
+  },
+  primaryButtonIcon: {
+    tintColor: theme.colors.white,
+  },
+  primaryButtonIconDisabled: {
+    tintColor: theme.colors.Gray[400],
   },
   secondaryButton: {
     width: '100%',
@@ -42,6 +72,16 @@ export const styles = StyleSheet.create({
   },
   tertiaryButton: {
     width: '100%',
+    height: 48,
+    backgroundColor: theme.colors.white,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: theme.colors.Gray[600],
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  tertiaryButtonHalfWidth: {
+    width: '48%',
     height: 48,
     backgroundColor: theme.colors.white,
     borderRadius: 8,
@@ -97,5 +137,11 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     color: theme.colors.Gray[600],
+  },
+  createUserTitle: {
+    fontSize: 30,
+    lineHeight: 38,
+    fontWeight: '600',
+    color: theme.colors.primaryColor,
   },
 })

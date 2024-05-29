@@ -7,7 +7,7 @@
       "developmentClient": true,
       "distribution": "internal",
       "env": {
-        "EXPO_PUBLIC_API_BASE_URL": "http://143.198.159.154/v1"
+        "EXPO_PUBLIC_API_BASE_URL": "https://api-hml.borarachar.online/v1"
       }
     },
     "preview": {
@@ -15,7 +15,7 @@
       "android": {
         "buildType": "apk",
         "env": {
-          "EXPO_PUBLIC_API_BASE_URL": "http://143.198.159.154/v1"
+          "EXPO_PUBLIC_API_BASE_URL": "https://api-hml.borarachar.online/v1"
         }
       }
     },
