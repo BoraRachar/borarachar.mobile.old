@@ -19,6 +19,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  primaryButtonDisabled: {
+    width: '100%',
+    height: 48,
+    backgroundColor: theme.colors.Gray[200],
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   primaryButtonHalfWidth: {
     width: '48%',
     height: 48,
@@ -50,10 +58,10 @@ export const styles = StyleSheet.create({
     color: theme.colors.Gray[400],
   },
   primaryButtonIcon: {
-    tintColor: theme.colors.white,
+    marginTop: 5,
   },
   primaryButtonIconDisabled: {
-    tintColor: theme.colors.Gray[400],
+    marginTop: 5,
   },
   secondaryButton: {
     width: '100%',

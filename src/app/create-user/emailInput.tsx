@@ -2,19 +2,22 @@ import {
   View,
   Text,
   TextInput,
-  TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
+  Keyboard,
 } from 'react-native'
 import { useNavigationControls } from '@/src/utils/CreateUserButtonsNavigation'
+import { useState, useEffect } from 'react'
 import useStore from '@/src/store/CreateUserStore'
-import useKeyboardStatus from '@/src/utils/keyboardUtils'
-import { useForm, Controller, FieldValues } from 'react-hook-form'
+import { ButtonCustomizer } from '../../components/ButtonCustomizer'
+import { useForm, Controller, FieldValues, useWatch } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { styles } from './styles'
+import { styles as globalStyles } from '../styles'
 import { theme } from '@/src/theme'
 import ArrowRight from '../../assets/images/arrowRight.svg'
+import ArrowRightDisable from '../../assets/images/arrowRightDisable.svg'
 import WarningCircle from '../../assets/images/WarningCircle.svg'
 
 const schema = yup
@@ -37,25 +40,50 @@ export default function EmailInput() {
 
   const { handleNavigationButton } = useNavigationControls()
   const { addUser } = useStore()
-  const isKeyboardActive = useKeyboardStatus()
+  const [isButtonDisable, setIsButtonDisable] = useState(true)
+  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false)
 
-  const contentFormStyle = isKeyboardActive
-    ? styles.contentFormSpecificBottom
-    : styles.contentForm
+  const email = useWatch({ control, name: 'email', defaultValue: '' })
 
   const onSubmit = (data: FieldValues) => {
     addUser({ email: data.email })
     handleNavigationButton()
   }
 
+  useEffect(() => {
+    if (email.trim().length > 0) {
+      setIsButtonDisable(false)
+    } else {
+      setIsButtonDisable(true)
+    }
+  }, [email])
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => setIsKeyboardVisible(true),
+    )
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => setIsKeyboardVisible(false),
+    )
+
+    return () => {
+      keyboardDidShowListener.remove()
+      keyboardDidHideListener.remove()
+    }
+  }, [])
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
-      <View style={contentFormStyle}>
+      <View style={styles.contentForm}>
         <View>
-          <Text style={styles.titleInput}>Nos diga seu melhor e-mail</Text>
+          <Text style={globalStyles.createUserTitle}>
+            Nos diga seu melhor e-mail
+          </Text>
           <Controller
             control={control}
             name="email"
@@ -76,15 +104,38 @@ export default function EmailInput() {
             <Text style={styles.errorText}>{errors.email.message}</Text>
           )}
         </View>
-        <View style={styles.buttonsContainer}>
-          <TouchableOpacity onPress={handleSubmit(onSubmit)}>
-            <View style={styles.userButton}>
-              <Text style={styles.emailButtonText}>Usuário</Text>
-              <ArrowRight style={styles.arrowIcon} />
-            </View>
-          </TouchableOpacity>
-        </View>
       </View>
+      {!isKeyboardVisible && (
+        <View style={styles.buttonsContainer}>
+          <ButtonCustomizer.Root
+            type={'primary'}
+            onPress={handleSubmit(onSubmit)}
+            disabled={isButtonDisable}
+            customStyles={
+              isButtonDisable
+                ? globalStyles.primaryButtonDisabled
+                : globalStyles.primaryButton
+            }
+          >
+            <ButtonCustomizer.Title
+              title="Usuário"
+              customStyles={
+                isButtonDisable
+                  ? globalStyles.primaryButtonTextDisabled
+                  : globalStyles.primaryButtonText
+              }
+            />
+            <ButtonCustomizer.Icon
+              icon={isButtonDisable ? ArrowRightDisable : ArrowRight}
+              customStyles={
+                isButtonDisable
+                  ? globalStyles.primaryButtonIconDisabled
+                  : globalStyles.primaryButtonIcon
+              }
+            />
+          </ButtonCustomizer.Root>
+        </View>
+      )}
     </KeyboardAvoidingView>
   )
 }
