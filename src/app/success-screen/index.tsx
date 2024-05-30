@@ -1,7 +1,9 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Dimensions } from 'react-native'
-import { Link } from 'expo-router'
+import { View, Text, Dimensions } from 'react-native'
+import { router } from 'expo-router'
 import { styles } from './styles'
+import { styles as globalStyles } from '../styles'
+import { ButtonCustomizer } from '../../components/ButtonCustomizer'
 import Sucesso from '../../assets/images/sucesso.svg'
 
 const windowHeight = Dimensions.get('window').height
@@ -28,13 +30,15 @@ export default function OnboardingScreen1() {
         </View>
       </View>
       <View style={styles.button}>
-        <TouchableOpacity>
-          <View style={styles.buttonArea}>
-            <Link push href="/">
-              <Text style={styles.buttonText}>Fazer login</Text>
-            </Link>
-          </View>
-        </TouchableOpacity>
+        <ButtonCustomizer.Root
+          type={'primary'}
+          onPress={() => router.push('/')}
+        >
+          <ButtonCustomizer.Title
+            title="Fazer login"
+            customStyles={globalStyles.primaryButtonText}
+          />
+        </ButtonCustomizer.Root>
       </View>
     </View>
   )

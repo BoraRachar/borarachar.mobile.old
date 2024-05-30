@@ -4,11 +4,12 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  TouchableOpacity,
 } from 'react-native'
 import { router } from 'expo-router'
 import Header from '@/src/components/HeaderComponent/HeaderComponent'
+import { ButtonCustomizer } from '../../components/ButtonCustomizer'
 import { styles } from './styles'
+import { styles as globalStyles } from '../styles'
 import { termAndService } from '@/src/data/termService'
 import useStore from '@/src/store/CreateUserStore'
 
@@ -33,13 +34,12 @@ export default function TermService() {
         >
           <Text>{termAndService.termoDeServicoText}</Text>
         </ScrollView>
-        <TouchableOpacity onPress={onSubmit}>
-          <View style={styles.buttonTerm}>
-            <Text style={styles.buttonTermText}>
-              Li e concordo com os Termos
-            </Text>
-          </View>
-        </TouchableOpacity>
+        <ButtonCustomizer.Root type={'primary'} onPress={onSubmit}>
+          <ButtonCustomizer.Title
+            title="Li e concordo com os Termos"
+            customStyles={globalStyles.primaryButtonText}
+          />
+        </ButtonCustomizer.Root>
       </View>
     </KeyboardAvoidingView>
   )
