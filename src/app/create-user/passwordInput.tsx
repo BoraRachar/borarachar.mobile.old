@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
   Pressable,
@@ -15,13 +14,15 @@ import { useForm, Controller, FieldValues, useWatch } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import useKeyboardStatus from '@/src/utils/keyboardUtils'
+import { ButtonCustomizer } from '../../components/ButtonCustomizer'
 import { styles } from './styles'
+import { styles as globalStyles } from '../styles'
 import { theme } from '@/src/theme'
 import ArrowRight from '../../assets/images/arrowRight.svg'
+import ArrowRightDisable from '../../assets/images/arrowRightDisable.svg'
 import OpenEye from '../../assets/images/openEye.svg'
 import CloseEye from '../../assets/images/closeEye.svg'
 import WarningCircle from '../../assets/images/WarningCircle.svg'
-import PasswordInfoComponent from '@/src/components/PasswordInfoComponent'
 
 const schema = yup
   .object({
@@ -44,12 +45,9 @@ export default function PasswordInput() {
   const { handleNavigationButton } = useNavigationControls()
   const password = useWatch({ control, name: 'password', defaultValue: '' })
   const { addUser } = useStore()
-  const isKeyboardActive = useKeyboardStatus()
+  const [isButtonDisable, setIsButtonDisable] = useState(true)
+  const isKeyboardVisible = useKeyboardStatus()
   const scrollViewRef = useRef<ScrollView>(null)
-
-  const contentFormStyle = isKeyboardActive
-    ? styles.contentFormSpecificBottom
-    : styles.contentForm
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword)
@@ -65,21 +63,33 @@ export default function PasswordInput() {
   }
 
   useEffect(() => {
-    if (isKeyboardActive) {
+    if (password.trim().length > 0) {
+      setIsButtonDisable(false)
+    } else {
+      setIsButtonDisable(true)
+    }
+  }, [password])
+
+  useEffect(() => {
+    if (isKeyboardVisible) {
       handleScrollToEnd()
     }
-  }, [isKeyboardActive])
+  }, [isKeyboardVisible])
 
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
-      <View style={contentFormStyle}>
+      <View style={styles.contentForm}>
         <ScrollView ref={scrollViewRef} showsVerticalScrollIndicator={false}>
           <View>
-            <Text style={styles.titleInput}>
+            <Text style={globalStyles.createUserTitle}>
               Crie uma senha para a sua conta
+            </Text>
+            <Text style={globalStyles.mainText}>
+              Sua senha deve ter no minimo 8 caracteres, inclua uma letra
+              maiúscula, um número e um caractere especial (como @, #, $, &).
             </Text>
             <Controller
               control={control}
@@ -99,7 +109,7 @@ export default function PasswordInput() {
                       onPress={handleShowPassword}
                       style={styles.iconForm}
                     >
-                      {!showPassword ? <CloseEye /> : <OpenEye />}
+                      {!showPassword ? <OpenEye /> : <CloseEye />}
                     </Pressable>
                   ) : (
                     <WarningCircle style={styles.iconForm} />
@@ -110,18 +120,40 @@ export default function PasswordInput() {
             {errors.password && (
               <Text style={styles.errorText}>{errors.password.message}</Text>
             )}
-            <PasswordInfoComponent password={password} />
           </View>
         </ScrollView>
-        <View style={[styles.buttonsContainer, { marginTop: 20 }]}>
-          <TouchableOpacity onPress={handleSubmit(onSubmit)}>
-            <View style={styles.userButton}>
-              <Text style={styles.emailButtonText}>Termos</Text>
-              <ArrowRight style={styles.arrowIcon} />
-            </View>
-          </TouchableOpacity>
-        </View>
       </View>
+      {!isKeyboardVisible && (
+        <View style={styles.buttonsContainer}>
+          <ButtonCustomizer.Root
+            type={'primary'}
+            onPress={handleSubmit(onSubmit)}
+            disabled={isButtonDisable}
+            customStyles={
+              isButtonDisable
+                ? globalStyles.primaryButtonDisabled
+                : globalStyles.primaryButton
+            }
+          >
+            <ButtonCustomizer.Title
+              title="Termos"
+              customStyles={
+                isButtonDisable
+                  ? globalStyles.primaryButtonTextDisabled
+                  : globalStyles.primaryButtonText
+              }
+            />
+            <ButtonCustomizer.Icon
+              icon={isButtonDisable ? ArrowRightDisable : ArrowRight}
+              customStyles={
+                isButtonDisable
+                  ? globalStyles.primaryButtonIconDisabled
+                  : globalStyles.primaryButtonIcon
+              }
+            />
+          </ButtonCustomizer.Root>
+        </View>
+      )}
     </KeyboardAvoidingView>
   )
 }

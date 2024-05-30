@@ -141,6 +141,12 @@ export const styles = StyleSheet.create({
     color: theme.colors.Gray[600],
     marginTop: 24,
   },
+  mainText: {
+    fontSize: 16,
+    lineHeight: 24,
+    color: theme.colors.primaryColor,
+    marginBottom: 22,
+  },
   generalText: {
     fontSize: 16,
     lineHeight: 24,
