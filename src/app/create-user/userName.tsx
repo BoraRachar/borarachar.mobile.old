@@ -100,7 +100,7 @@ export default function UserName() {
             }
           >
             <ButtonCustomizer.Title
-              title="Usuário"
+              title="Senha"
               customStyles={
                 isButtonDisable
                   ? globalStyles.primaryButtonTextDisabled
