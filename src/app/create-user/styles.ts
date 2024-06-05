@@ -60,12 +60,12 @@ export const styles = StyleSheet.create({
   input: {
     width: '100%',
     height: 48,
-    borderColor: theme.colors.primary,
+    borderColor: theme.colors.Gray[300],
     borderWidth: 1,
     borderRadius: 8,
     marginTop: 20,
     padding: 10,
-    color: theme.colors.secondary,
+    color: theme.colors.primaryColor,
   },
   cancelButton: {
     minWidth: '48%',

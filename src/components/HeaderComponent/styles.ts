@@ -11,13 +11,13 @@ export const styles = StyleSheet.create({
     marginBottom: 24,
     paddingHorizontal: 20,
     borderBottomWidth: 0.5,
-    borderBottomColor: theme.colors.gray,
+    borderBottomColor: theme.colors.secondaryColor,
   },
   title: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: 'bold',
     lineHeight: 24,
-    color: theme.colors.textGray,
+    color: theme.colors.Gray[600],
   },
   titleContainer: {
     flex: 3,

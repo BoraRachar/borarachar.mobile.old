@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { router } from 'expo-router'
 import { useAsyncStorage } from '@react-native-async-storage/async-storage'
-import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, Dimensions } from 'react-native'
+import { ButtonCustomizer } from '../components/ButtonCustomizer'
 import { styles } from './styles'
 import OnboardingScreen1 from './onboarding-screens/onboarding1'
 import Logo from '../assets/images/logo.svg'
@@ -47,31 +48,38 @@ export default function Index() {
             >
               <Logo />
               <View style={styles.containerButtons}>
-                <TouchableOpacity
-                  style={styles.primaryButton}
+                <ButtonCustomizer.Root
+                  type="primary"
                   onPress={() => router.push('/create-user/')}
                 >
-                  <Text style={styles.primaryButtonText}>
-                    Criar minha conta
-                  </Text>
-                </TouchableOpacity>
+                  <ButtonCustomizer.Title
+                    title="Criar minha conta"
+                    customStyles={styles.primaryButtonText}
+                  ></ButtonCustomizer.Title>
+                </ButtonCustomizer.Root>
                 <View style={styles.horizontalLineWithTextContainer}>
                   <View style={styles.horizontalLine} />
                   <Text style={styles.horizontalText}>OU</Text>
                   <View style={styles.horizontalLine} />
                 </View>
-                <TouchableOpacity
-                  style={styles.secondaryButton}
+                <ButtonCustomizer.Root
+                  type="secondary"
                   onPress={() => router.push('/login/')}
                 >
-                  <Text style={styles.secondaryButtonText}>Fazer Login</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.tertiaryButton}
+                  <ButtonCustomizer.Title
+                    title="Fazer Login"
+                    customStyles={styles.secondaryButtonText}
+                  ></ButtonCustomizer.Title>
+                </ButtonCustomizer.Root>
+                <ButtonCustomizer.Root
+                  type="tertiary"
                   onPress={() => router.push('/')}
                 >
-                  <Text style={styles.tertiaryButtonText}>Calculadora</Text>
-                </TouchableOpacity>
+                  <ButtonCustomizer.Title
+                    title="Calculadora"
+                    customStyles={styles.tertiaryButtonText}
+                  ></ButtonCustomizer.Title>
+                </ButtonCustomizer.Root>
               </View>
             </View>
           )}

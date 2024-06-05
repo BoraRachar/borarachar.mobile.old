@@ -9,12 +9,12 @@ export const styles = StyleSheet.create({
   progressBarBackground: {
     width: '90%',
     height: 8,
-    backgroundColor: theme.colors.tertiary,
+    backgroundColor: theme.colors.Gray[100],
     borderRadius: 8,
   },
   progressBarTranck: {
     height: 8,
-    backgroundColor: theme.colors.primary,
+    backgroundColor: theme.colors.Gray[500],
     borderRadius: 8,
   },
 })
